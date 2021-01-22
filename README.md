@@ -7,4 +7,4 @@ laboratory tests that have been assigned to each sample.
 
 The app is deployed here: https://potterotherp.github.io/pwsm/. This app is a work in progress, begun in January 2021.
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app). 
+This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app) and uses [Primitive CSS by Tania Rascia](https://github.com/taniarascia/primitive). 
