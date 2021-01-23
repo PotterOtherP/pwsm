@@ -125,13 +125,13 @@ class Form extends Component {
                         <td>
                         <label htmlFor="reportNumber">Report Number: </label>
                         <input type="number" id="reportNumber" name="reportNumber" onChange={this.handleChange}
-                        onFocus={this.selectReportNumber} value={this.state.reportNumber} min="1" required/>
+                        onFocus={this.selectReportNumber} value={this.state.reportNumber} min="1" max="99999" required/>
                         </td>
 
                         <td>
                         <label htmlFor="firstLabId">First Lab ID: </label>
                         <input type="number" id="firstLabId" name="firstLabId" onChange={this.handleChange}
-                        onFocus={this.selectFirstId} value={this.state.firstLabId} min="1" required/>
+                        onFocus={this.selectFirstId} value={this.state.firstLabId} min="1" max="99999" required/>
                         </td>
                         </tr>
                         </tbody>

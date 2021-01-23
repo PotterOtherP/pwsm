@@ -18,6 +18,7 @@ const plant_codes = [
     "Broccoli",
     "Brussels sprouts",
     "Cabbage",
+    "Canola",
     "Cantaloupe",
     "Carinata",
     "Cauliflower",
@@ -39,6 +40,7 @@ const plant_codes = [
     "Grape, Vinifera",
     "Honeydew",
     "Kale",
+    "Kohlrabi",
     "Lettuce",
     "Oats",
     "Okra",
@@ -46,14 +48,17 @@ const plant_codes = [
     "Pear",
     "Pepper",
     "Pine",
+    "Poinsettia",
     "Raspberry",
     "Rice",
     "Soybean",
+    "Spinach",
     "Squash",
     "Strawberry",
     "Tobacco",
     "Tomato",
     "Turfgrass",
+    "Turnip",
     "Watermelon",
     "Wheat",
     "Zucchini"
@@ -162,11 +167,6 @@ const media_codes = [
 
 ];
 
-// const all_plant_tests = [ "Biomass", "C", "Cl", "DW", "ICP", "Mo", "N", "NO3"];
-// const all_waste_tests = [ "C", "CCE", "DM", "EC", "HM", "HM - All", "ICP", "Mo", "N", "NH4/NO3", "pH", "TKN"];
-// const all_solution_tests = [ "CBC", "Cl", "EC", "ICP", "Mo", "NH4/NO3", "pH", "Urea" ];
-// const all_media_tests = [ "Bulk Density", "Cl", "EC", "ICP", "Mo", "NH4/NO3", "pH", "Urea" ];
-
 const default_plant_tests = ["ICP", "N"];
 const default_waste_liquid_tests = ["ICP", "pH", "TKN"];
 const default_waste_solid_tests = ["DM", "ICP", "N"];
@@ -231,7 +231,14 @@ const extra_tests = {
 
 };
 
+const saved_reports = [];
+
 class App extends Component {
+
+    componentDidMount() {
+        console.log("Hello.");
+
+    }
 
     initialState = {
 
@@ -430,7 +437,39 @@ class App extends Component {
 
         else
         {
-            console.table(this.state.sampleGrid);
+            let styledNumber = "R";
+
+            switch(this.state.sampleType)
+            {
+                case "Plant": styledNumber += "P"; break;
+                case "Waste": styledNumber += "W"; break;
+                case "Solution": styledNumber += "S"; break;
+                case "Media": styledNumber += "M"; break;
+                default: break;
+            }
+
+            if (this.state.reportNumber < 10) styledNumber += "00000";
+            else if (this.state.reportNumber < 100) styledNumber += "0000";
+            else if (this.state.reportNumber < 1000) styledNumber += "000";
+            else if (this.state.reportNumber < 1000) styledNumber += "00";
+            else if (this.state.reportNumber < 10000) styledNumber += "0";
+
+            styledNumber += this.state.reportNumber;
+
+            let newReport = {
+
+                reportNumber: this.state.reportNumber,
+                styledReportNumber: styledNumber,
+                reportType: this.state.reportType,
+                sampleGrid: this.state.sampleGrid,
+                firstLabId: this.state.firstLabId,
+                lastLabId: this.state.firstLabId + this.state.sampleGrid.length
+
+            };
+
+            saved_reports.push(newReport);
+            console.table(this.state.sampleGrid);   
+            console.log("Saving report " + newReport.styledReportNumber);
         }
 
     }
@@ -589,14 +628,5 @@ function getTests(type, code)
     return result_copy;
 }
 
-function getExtraTests(code)
-{
-    let result = [];
-    if (extra_tests.hasOwnProperty(code))
-        result = extra_tests[code];
-
-    return result;
-
-}
 
 export default App
