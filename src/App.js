@@ -416,7 +416,12 @@ class App extends Component {
         {
             return (
             <div className="container">
-                <button id="displaySavedButton" onClick={() => this.displayReports()}>Show Saved Reports</button>
+            <header>
+            <h2>PWSM Receiving</h2>
+                <button id="displaySavedButton"
+                    onClick={() => this.displayReports()}>{"Show Saved Reports (" + saved_report_ids.length + ")"}
+                </button>
+            </header>
                 <Form
                     clearGrid={this.clearGrid}
                     plantMenu={plant_codes}

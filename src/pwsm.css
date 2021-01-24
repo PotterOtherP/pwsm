@@ -46,6 +46,10 @@
     margin-left: 5px;
 }
 
+.plain-label {
+    font-weight: 600;
+}
+
 body {
     background-color: #ffffee;
 }
@@ -72,6 +76,12 @@ select {
   background-color: #fff;
 }
 
+header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-top: 10px;
+}
 
 fieldset {
   /*padding: 1rem;*/
@@ -79,6 +89,15 @@ fieldset {
   align-items: center;
   margin: 0px;
   padding: 0px;
+}
+
+#codeSelect, #numSamplesInput, #receiveDateInput, #create-grid-button {
+    margin: 10px;
+}
+
+.form-bottom-row {
+    height: 100px;
+    justify-content: space-between;
 }
 
 .radioArea {

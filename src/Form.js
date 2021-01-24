@@ -129,41 +129,61 @@ class Form extends Component {
                     <input type="radio" id="out-of-state" name="reportType" value="Out of State" />
                     <label htmlFor="out-of-state"> <div className="radioArea reportTypeBG">Out of State</div></label>
                 </fieldset>
+
+                <fieldset className="flex-row form-bottom-row">
+
+                    <label htmlFor="numSamples">Crop/Code:</label>
+                    <select name="sampleCode" id="codeSelect" onChange={this.handleChange} value={this.state.sampleCode} >
+                        {this.props.dropDown.map( (code, index) => {
+                            return (<option key={index} value={code}>{code}</option>);
+                        })}
+                    </select>
+
+                    <label htmlFor="numSamples">Number of Samples:</label>
+                    <input type="number" id="numSamplesInput" name="numSamples" onChange={this.handleChange}
+                    onFocus={this.selectNumSamples} value={this.state.numSamples} min="1" max="500" required />
+
+                    <label htmlFor="receiveDate">Date Received:</label>
+                    <input type="date" id="receiveDateInput" name="receiveDate"
+                    defaultValue={this.getCurrentDate()}
+                    onChange={this.handleChange}/>
+
+                </fieldset>
                 
-                    <div className="flex-row">
-                    <table>
-                    <thead></thead>
-                    <tbody>
-                    <tr>
-                        <td>
-                        <label htmlFor="sampleCode">Crop/Code:</label>
-                        <select name="sampleCode" id="codeSelect" onChange={this.handleChange} value={this.state.sampleCode} >
-                            {this.props.dropDown.map( (code, index) => {
-                                return (<option key={index} value={code}>{code}</option>);
-                            })}
-                        </select>
-                        </td>
+                {/*<div>
+                                <table>
+                                <thead></thead>
+                                <tbody>
+                                <tr>
+                                    <td><label htmlFor="numSamples">Crop/Code:</label></td>
+                                    <td>
+                                    <select name="sampleCode" id="codeSelect" onChange={this.handleChange} value={this.state.sampleCode} >
+                                        {this.props.dropDown.map( (code, index) => {
+                                            return (<option key={index} value={code}>{code}</option>);
+                                        })}
+                                    </select>
+                                    </td>
+                
+                                    <td><label htmlFor="numSamples">Number of Samples: </label></td>
+                                    <td>
+                                    <input type="number" id="numSamples" name="numSamples" onChange={this.handleChange}
+                                    onFocus={this.selectNumSamples} value={this.state.numSamples} min="1" max="500" required />
+                                    </td>
+                
+                                    <td><label htmlFor="receiveDate">Date Received:</label></td>
+                                    <td>
+                                    <input type="date" id="receiveDate" name="receiveDate"
+                                    defaultValue={this.getCurrentDate()}
+                                    onChange={this.handleChange}/>
+                                    </td>
+                
+                                </tr>
+                                </tbody>
+                
+                                </table>
+                                </div>*/}
 
-                        <td>
-                        <label htmlFor="numSamples">Number of Samples: </label>
-                        <input type="number" id="numSamples" name="numSamples" onChange={this.handleChange}
-                        onFocus={this.selectNumSamples} value={this.state.numSamples} min="1" max="500" required />
-                        </td>
-
-                        <td>
-                        <label htmlFor="receiveDate">Date Received:</label>
-                        <input type="date" id="receiveDate" name="receiveDate"
-                        defaultValue={this.getCurrentDate()}
-                        onChange={this.handleChange}/>
-                        </td>
-
-                    </tr>
-                    </tbody>
-
-                    </table>
-                    </div>
-
-                <input type="submit" value="Create Grid" onClick={this.submitForm} />
+                <input type="submit" id="create-grid-button" value="Create Grid" onClick={this.submitForm} />
             </form>
         );
     }
