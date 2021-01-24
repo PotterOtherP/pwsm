@@ -142,8 +142,13 @@ class App extends Component {
         this.setState(state => {
 
             return {
-                reportNumber: this.getNextNumbers(this.state.sampleType)[0],
-                firstLabId: this.getNextNumbers(this.state.sampleType)[1],
+                sampleType: "Plant",
+                sampleCode: plant_codes[0],
+                formSampleType: "Plant",
+                formSampleCode: plant_codes[0],
+                reportType: "Predictive",
+                reportNumber: this.getNextNumbers("Plant")[0],
+                firstLabId: this.getNextNumbers("Plant")[1],
                 createDisplay: true,
                 savedDisplay: false
             }
@@ -393,6 +398,12 @@ class App extends Component {
 
     }
 
+    setReportType = (type) => {
+        this.setState(state => {
+            return ({reportType: type});
+        });
+    }
+
     setSampleCode = (key, newCode) => {
         this.setState(state => {
 
@@ -440,9 +451,9 @@ class App extends Component {
                     handleSubmit={this.handleSubmit}
                     sampleCode={this.state.formSampleCode}
                     setFormSampleType={this.setFormSampleType}
+                    setReportType={this.setReportType}
                     />
-
-                <div className="container">
+                <div className="container table-container">
                 <Table
                     addComment={this.addComment}
                     assignTest={this.assignTest}

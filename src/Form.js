@@ -39,6 +39,9 @@ class Form extends Component {
             return { [event.target.name]: event.target.value };
         });
 
+        if (event.target.name === "reportType")
+            this.props.setReportType(event.target.value);
+
 
     }
 
@@ -95,7 +98,7 @@ class Form extends Component {
             <form>
 
                 <fieldset className="flex-row" onChange={this.handleSampleTypeChange}>
-                    <h4>Select Sample Type:</h4>
+                    <h5>Select Sample Type:</h5>
                     <input type="radio" id="plant" name="sampleType" value="Plant" defaultChecked />
                     <label htmlFor="plant"><div className="radioArea plantBG">Plant</div></label>
 
@@ -110,7 +113,7 @@ class Form extends Component {
                 </fieldset>
 
                 <fieldset className="flex-row" onChange={this.handleChange}>
-                    <h4>Select Report Type:</h4>
+                    <h5>Select Report Type:</h5>
                     <input type="radio" id="predictive" name="reportType" value="Predictive" defaultChecked />
                     <label htmlFor="predictive"> <div className="radioArea reportTypeBG">Predictive</div></label>
 

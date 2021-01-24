@@ -92,7 +92,7 @@ const SampleRow = (props) => {
             }).join(" ")}
 
 
-                <button id="testEdit" onClick={() => toggleTestEditForm(props.sampleId, getTestArray(props.type), props.tests)} >
+                <button id="testEdit" className="editTests" title="Edit Tests" onClick={() => toggleTestEditForm(props.sampleId, getTestArray(props.type), props.tests)} >
                 <img src="https://s2.svgbox.net/materialui.svg?ic=edit&color=fff" alt=""/>
                 </button>
                 <TestEditForm id={props.sampleId} testArray={getTestArray(props.type)} assignedTests={props.tests} assignTest={props.assignTest}/>
@@ -103,10 +103,10 @@ const SampleRow = (props) => {
                 <input type="text" value={props.comment} onChange={(event) => props.addComment(props.index, event.target.value)} />
             </td>
             <td>
-                <button onClick={() => props.insertSample(props.index)}>+</button>
+                <button className="duplicate gridButton" title="Duplicate Row" onClick={() => props.insertSample(props.index)}>+</button>
             </td>
             <td>
-                <button onClick={() => props.removeSample(props.index)}>X</button>
+                <button className="delete gridButton" title="Delete Row" onClick={() => props.removeSample(props.index)}>X</button>
             </td>
         </tr>
     );

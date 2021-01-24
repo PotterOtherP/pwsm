@@ -903,8 +903,10 @@ textarea {
 }
 
 fieldset {
-  border: 1px solid #dedede;
-  border-radius: 4px;
+  /*border: 1px solid #dedede;*/
+  border: none;
+  border-bottom: 1px solid black;
+  /*border-radius: 4px;*/
   padding: 1rem;
   margin: 1.5rem 0;
 }

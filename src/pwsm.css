@@ -6,56 +6,110 @@
     float: right;
 }
 
-.pwsm-table{
+#displaySavedButton {
+    margin-left: 0px;
+}
 
+.table-container{
+    overflow: auto;
+    max-height: 500px;
 
 }
 
 body {
-    background-color: #efe1ce;
+    background-color: #ffffee;
 }
 
 label {
 
 }
 
+select {
+    border: 1px solid black;
+    background-color: #fff;
+}
+
+[type='number'], [type='date'] {
+    border: 1px solid black;
+    background-color: #fff;
+}
+
+.striped-table tbody tr:nth-child(odd) {
+  background-color: #f8f8f8;
+}
+
+.striped-table tbody tr:nth-child(even) {
+  background-color: #fff;
+}
+
+
 fieldset {
-  /*border: 1px solid #dedede;*/
-  /*border-radius: 4px;*/
-  border: none;
-  padding: 1rem;
-  margin: 1.5rem 0;
-  align-content: center;
+  /*padding: 1rem;*/
+  /*margin: 1.5rem 0;*/
+  align-items: center;
+  margin: 0px;
+  padding: 0px;
 }
 
 .radioArea {
     width: 120px;
-    height: 100px;
+    height: 60px;
     border-radius: 15px;
     margin: 20px;
     text-align: center;
+    padding-top: 15px;
+
+}
+
+.duplicate, .duplicate:hover, .duplicate:focus {
+    background-color: green;
+    font-size: 30px;
+}
+
+.delete, .delete:hover, .delete:focus {
+    background-color: #cd212a;
+    font-size: 25px;
+}
+
+.gridButton {
+    width: 66px;
+    height: 53px;
 }
 
 
 .plantBG {
-    background-color: #f5df4d;
+    background-color: #ffff99;
+    border: 1px solid #333;
+}
+
+.plantBG:active {
+    background-color: white;
+}
+
+.plantBG:hover, .wasteBG:hover, .solutionBG:hover, .mediaBG:hover, .reportTypeBG:hover,
+.duplicate:hover, .delete:hover {
+    border: 3px solid #333;
 }
 
 .wasteBG {
-    background-color: #b55a30;
+    background-color: #ffbf80;
+    border: 1px solid #333;
 }
 
 .solutionBG {
-    background-color: #0072b5;
+    background-color: #99ddff;
+    border: 1px solid #333;
 }
 
 .mediaBG {
-    background-color: #d2386c;
+    background-color: #ffb3cc;
+    border: 1px solid #333;
 }
 
 .reportTypeBG {
-    color: #f2f2f2;
-    background-color: #333;
+    background-color: #f2f2f2;
+    color: #333;
+    border: 1px solid #333;
 }
 
 [type='radio'] {
@@ -94,3 +148,54 @@ fieldset {
 {color:#000;background-color:#E0B589}
 .w3-2021-willow
 {color:#fff;background-color:#9A8B4F}
+
+.w3-2020-classic-blue
+{color:#fff;background-color:#34568B}
+.w3-2020-flame-scarlet
+{color:#fff;background-color:#CD212A}
+.w3-2020-saffron
+{color:#000;background-color:#FFA500}
+.w3-2020-biscay-green
+{color:#000;background-color:#56C6A9}
+.w3-2020-chive
+{color:#fff;background-color:#4B5335}
+.w3-2020-faded-denim
+{color:#fff;background-color:#798EA4}
+.w3-2020-orange-peel
+{color:#fff;background-color:#FA7A35}
+.w3-2020-mosaic-blue
+{color:#fff;background-color:#00758F}
+.w3-2020-sunlight
+{color:#000;background-color:#EDD59E}
+.w3-2020-coral-pink
+{color:#000;background-color:#E8A798}
+.w3-2020-cinnamon-stick
+{color:#fff;background-color:#9C4722}
+.w3-2020-grape-compote
+{color:#fff;background-color:#6B5876}
+.w3-2020-lark
+{color:#fff;background-color:#B89B72}
+.w3-2020-navy-blazer
+{color:#fff;background-color:#282D3C}
+.w3-2020-brilliant-white
+{color:#000;background-color:#EDF1FF}
+.w3-2020-ash
+{color:#fff;background-color:#A09998}
+.w3-2020-amberglow
+{color:#fff;background-color:#DC793E}
+.w3-2020-samba
+{color:#fff;background-color:#A2242F}
+.w3-2020-sandstone
+{color:#fff;background-color:#C48A69}
+.w3-2020-green-sheen
+{color:#000;background-color:#D9CE52}
+.w3-2020-rose-tan
+{color:#000;background-color:#D19C97}
+.w3-2020-ultramarine-green
+{color:#fff;background-color:#006B54}
+.w3-2020-fired-brick
+{color:#fff;background-color:#6A2E2A}
+.w3-2020-peach-nougat
+{color:#000;background-color:#E6AF91}
+.w3-2020-magenta-purple
+{color:#fff;background-color:#6C244C}
