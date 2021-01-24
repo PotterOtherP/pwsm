@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import Table from './Table';
+import SavedTable from './SavedTable';
 import Form from './Form';
 
 const plant_codes = [
@@ -232,22 +233,44 @@ const extra_tests = {
 };
 
 const saved_reports = [];
+const saved_report_ids = [];
+
+const saved_plant_report_numbers = [];
+const saved_waste_report_numbers = [];
+const saved_solution_report_numbers = [];
+const saved_media_report_numbers = [];
+
+const saved_plant_lab_ids = [];
+const saved_waste_lab_ids = [];
+const saved_solution_lab_ids = [];
+const saved_media_lab_ids = [];
 
 class App extends Component {
 
     componentDidMount() {
         console.log("Hello.");
 
+        this.setState(state => {
+
+            return {
+                reportNumber: this.getNextNumbers(this.state.sampleType)[0],
+                firstLabId: this.getNextNumbers(this.state.sampleType)[1]
+            }
+        });
+
     }
 
     initialState = {
+
+        createDisplay: true,
+        savedDisplay: false,
 
         sampleType: "Plant",
         formSampleType: "Plant",
         formSampleCode: plant_codes[0],
         reportType: "Predictive",
-        reportNumber: 1,
-        firstLabId: 1,
+        reportNumber: 101,
+        firstLabId: 1001,
         numSamples: 1,
         sampleCode: '',
         sampleGrid: []
@@ -255,6 +278,8 @@ class App extends Component {
 
 
     state = this.initialState;
+
+
 
     addComment = (key, newComment) => {
 
@@ -340,9 +365,45 @@ class App extends Component {
             while (samples.length > 0)
                 samples.shift();
 
-            return {sampleGrid: samples}
+            return {sampleGrid: samples, numSamples: 1}
 
         });
+    }
+
+    deleteSavedReport = (reportNumber) =>
+    {
+
+    }
+
+    displayCreate = () => {
+
+
+
+        this.setState(state => {
+
+            return {
+                createDisplay: true,
+                savedDisplay: false
+            }
+        })
+    }
+
+    displayReports = () => {
+
+        if (saved_reports.length < 1)
+        {
+            window.alert("No reports have been created.");
+            return;
+        }
+
+        this.setState(state => {
+
+            return {
+                createDisplay: false,
+                savedDisplay: true
+            }
+        })
+
     }
 
     getDropDown = (type) => {
@@ -355,6 +416,70 @@ class App extends Component {
             case "Media": return media_codes;
             default: break;
         }
+    }
+
+    getNextNumbers = (type) => {
+
+        let report_numbers = saved_plant_report_numbers;
+        let lab_numbers = saved_plant_lab_ids;
+        let nextReportNumber = 1;
+        let nextLabNumber = 1;
+
+        switch (type)
+        {
+            case "Waste":
+                report_numbers = saved_waste_report_numbers;
+                lab_numbers = saved_waste_lab_ids;
+                break;
+
+            case "Solution":
+                report_numbers = saved_solution_report_numbers;
+                lab_numbers = saved_solution_lab_ids;
+                break;
+
+            case "Media":
+                report_numbers = saved_media_report_numbers;
+                lab_numbers = saved_media_lab_ids;
+                break;
+
+            default: break;
+        }
+
+        if (report_numbers.length < 1)
+            nextReportNumber = 101;
+        else
+            nextReportNumber = report_numbers[report_numbers.length - 1] + 1;
+
+        if (lab_numbers.length < 1)
+            nextLabNumber = 1001;
+        else
+            nextLabNumber = lab_numbers[lab_numbers.length - 1] + 1;
+
+        return [nextReportNumber, nextLabNumber];
+    }
+
+    getStyledReportNumber = (type, number) => {
+
+        let styledNumber = "R";
+
+        switch(type)
+        {
+            case "Plant": styledNumber += "P"; break;
+            case "Waste": styledNumber += "W"; break;
+            case "Solution": styledNumber += "S"; break;
+            case "Media": styledNumber += "M"; break;
+            default: break;
+        }
+
+        if (number < 10) styledNumber += "00000";
+        else if (number < 100) styledNumber += "0000";
+        else if (number < 1000) styledNumber += "000";
+        else if (number < 1000) styledNumber += "00";
+        else if (number < 10000) styledNumber += "0";
+
+        styledNumber += number;
+
+        return styledNumber;
     }
 
     insertSample = (index) => {
@@ -400,8 +525,6 @@ class App extends Component {
             return {
                 sampleType: reportInfo.sampleType,
                 reportType: reportInfo.reportType,
-                reportNumber: Number.parseInt(reportInfo.reportNumber),
-                firstLabId: Number.parseInt(reportInfo.firstLabId),
                 numSamples: Number.parseInt(reportInfo.numSamples),
                 sampleCode: reportInfo.sampleCode
             };
@@ -415,7 +538,7 @@ class App extends Component {
             for (let i = 0; i < reportInfo.numSamples; ++i)
             {
                 samples.push({
-                    sampleId: Number.parseInt(reportInfo.firstLabId) + i,
+                    sampleId: Number.parseInt(this.state.firstLabId) + i,
                     code: reportInfo.sampleCode,
                     tests: getTests(reportInfo.sampleType, reportInfo.sampleCode),
                     comment: ""});
@@ -432,45 +555,78 @@ class App extends Component {
 
         if (this.state.sampleGrid.length < 1)
         {
-            console.log("Nothing to save!");
+            window.alert("Nothing to save!");
         }
 
         else
         {
-            let styledNumber = "R";
 
-            switch(this.state.sampleType)
-            {
-                case "Plant": styledNumber += "P"; break;
-                case "Waste": styledNumber += "W"; break;
-                case "Solution": styledNumber += "S"; break;
-                case "Media": styledNumber += "M"; break;
-                default: break;
-            }
-
-            if (this.state.reportNumber < 10) styledNumber += "00000";
-            else if (this.state.reportNumber < 100) styledNumber += "0000";
-            else if (this.state.reportNumber < 1000) styledNumber += "000";
-            else if (this.state.reportNumber < 1000) styledNumber += "00";
-            else if (this.state.reportNumber < 10000) styledNumber += "0";
-
-            styledNumber += this.state.reportNumber;
+            let newId = this.getStyledReportNumber(this.state.sampleType, this.state.reportNumber);
 
             let newReport = {
 
                 reportNumber: this.state.reportNumber,
-                styledReportNumber: styledNumber,
+                styledReportNumber: newId,
+                sampleType: this.state.sampleType,
                 reportType: this.state.reportType,
                 sampleGrid: this.state.sampleGrid,
                 firstLabId: this.state.firstLabId,
-                lastLabId: this.state.firstLabId + this.state.sampleGrid.length
+                lastLabId: this.state.firstLabId + this.state.sampleGrid.length - 1
 
             };
 
-            saved_reports.push(newReport);
-            console.table(this.state.sampleGrid);   
-            console.log("Saving report " + newReport.styledReportNumber);
+            if (saved_report_ids.includes(newId))
+            {
+                window.alert("Report " + newId + " has already been used." );
+            }
+
+            else
+            {
+                window.alert("Saving report " + newId);
+                saved_reports.push(newReport);
+                saved_report_ids.push(newId);
+                this.clearGrid();
+                
+                if (newReport.sampleType === "Plant")
+                {
+                    saved_plant_report_numbers.push(newReport.reportNumber);
+                    for (let i = newReport.firstLabId; i <= newReport.lastLabId; ++i)
+                        saved_plant_lab_ids.push(i);
+                }
+
+                else if (newReport.sampleType === "Waste")
+                {
+                    saved_waste_report_numbers.push(newReport.reportNumber);
+                    for (let i = newReport.firstLabId; i <= newReport.lastLabId; ++i)
+                        saved_waste_lab_ids.push(i);
+
+                }
+
+                else if (newReport.sampleType === "Solution")
+                    {
+                    saved_solution_report_numbers.push(newReport.reportNumber);
+                    for (let i = newReport.firstLabId; i <= newReport.lastLabId; ++i)
+                        saved_solution_lab_ids.push(i);
+
+                }
+
+                else if (newReport.sampleType === "Media")
+                    {
+                    saved_media_report_numbers.push(newReport.reportNumber);
+                    for (let i = newReport.firstLabId; i <= newReport.lastLabId; ++i)
+                        saved_media_lab_ids.push(i);
+
+                }
+            }
         }
+
+        this.setState(state => {
+
+            return {
+                reportNumber: this.getNextNumbers(this.state.sampleType)[0],
+                firstLabId: this.getNextNumbers(this.state.sampleType)[1]
+            }
+        });
 
     }
 
@@ -489,7 +645,21 @@ class App extends Component {
         
             return {
                 formSampleType: type,
-                formSampleCode: this.getDropDown(type)[0]
+                formSampleCode: this.getDropDown(type)[0],
+            }
+
+        });
+
+        console.log(type);
+        console.log(this.state.formSampleType);
+        console.log(this.getNextNumbers(type)[0]);
+        console.log(this.getNextNumbers(type)[1]);
+
+        this.setState(state => {
+        
+            return {
+                reportNumber: this.getNextNumbers(type)[0],
+                firstLabId: this.getNextNumbers(type)[1]
             }
 
         });
@@ -499,36 +669,54 @@ class App extends Component {
 
         // console.clear();
 
-        return (
-            <div className="container">
-            <Form
-                clearGrid={this.clearGrid}
-                plantMenu={plant_codes}
-                wasteMenu={waste_codes}
-                solutionMenu={solution_codes}
-                mediaMenu={media_codes}
-                dropDown={this.getDropDown(this.state.formSampleType)}
-                handleSubmit={this.handleSubmit}
-                sampleCode={this.state.formSampleCode}
-                setFormSampleType={this.setFormSampleType}
-                />
+        
 
+        if (this.state.createDisplay)
+        {
+            return (
             <div className="container">
-            <Table
-                addComment={this.addComment}
-                assignTest={this.assignTest}
-                clearGrid={this.clearGrid}
-                dropDown={this.getDropDown(this.state.sampleType)}
-                insertSample={this.insertSample}
-                removeSample={this.removeSample}
-                reportData={this.state}
-                saveReport={this.saveReport}
-                setSampleCode={this.setSampleCode}
-                />
-            </div>
+                <button id="displaySavedButton" onClick={() => this.displayReports()}>Show Saved Reports</button>
+                <Form
+                    clearGrid={this.clearGrid}
+                    plantMenu={plant_codes}
+                    wasteMenu={waste_codes}
+                    solutionMenu={solution_codes}
+                    mediaMenu={media_codes}
+                    dropDown={this.getDropDown(this.state.formSampleType)}
+                    handleSubmit={this.handleSubmit}
+                    sampleCode={this.state.formSampleCode}
+                    setFormSampleType={this.setFormSampleType}
+                    />
 
+                <div className="container">
+                <Table
+                    addComment={this.addComment}
+                    assignTest={this.assignTest}
+                    clearGrid={this.clearGrid}
+                    dropDown={this.getDropDown(this.state.sampleType)}
+                    insertSample={this.insertSample}
+                    removeSample={this.removeSample}
+                    reportData={this.state}
+                    saveReport={this.saveReport}
+                    setSampleCode={this.setSampleCode}
+                    />
+                </div>
             </div>
             );
+        }
+
+        else if (this.state.savedDisplay)
+        {
+            return (
+                <div className="container">
+                    <button id="displayCreateScreen" onClick={() => this.displayCreate()}>Create New Report</button>
+                    <SavedTable
+                        records={saved_reports}
+
+                    />
+                </div>
+            );
+        }
     }
 }
 

@@ -6,8 +6,6 @@ class Form extends Component {
 
         sampleType: 'Plant',
         reportType: 'Predictive',
-        reportNumber: 101,
-        firstLabId: 1001,
         numSamples: 1,
         sampleCode: this.props.dropDown[0],
 
@@ -121,22 +119,11 @@ class Form extends Component {
                         <input type="number" id="numSamples" name="numSamples" onChange={this.handleChange}
                         onFocus={this.selectNumSamples} value={this.state.numSamples} min="1" max="500" required />
                         </td>
-                        
-                        <td>
-                        <label htmlFor="reportNumber">Report Number: </label>
-                        <input type="number" id="reportNumber" name="reportNumber" onChange={this.handleChange}
-                        onFocus={this.selectReportNumber} value={this.state.reportNumber} min="1" max="99999" required/>
-                        </td>
 
-                        <td>
-                        <label htmlFor="firstLabId">First Lab ID: </label>
-                        <input type="number" id="firstLabId" name="firstLabId" onChange={this.handleChange}
-                        onFocus={this.selectFirstId} value={this.state.firstLabId} min="1" max="99999" required/>
-                        </td>
-                        </tr>
-                        </tbody>
+                    </tr>
+                    </tbody>
 
-                        </table>
+                    </table>
                     </div>
 
                 <input type="submit" value="Create Grid" onClick={this.submitForm} />
