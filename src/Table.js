@@ -1,21 +1,42 @@
 import React from 'react';
 import SampleRow from './SampleRow';
+import {getStyledReportNumber, getStyledLabId} from './data.js';
 
 
 
 const LabHeader = (props) => {
 
+    const rNum = getStyledReportNumber(props.reportData.sampleType, props.reportData.reportNumber);
+    let lNum = getStyledLabId(props.reportData.sampleType, props.reportData.firstLabId);
+    let sampleRange = (props.reportData.numSamples > 1)? lNum + " - " + (props.reportData.firstLabId + props.reportData.numSamples - 1)
+        : lNum;
+
+    if (props.reportData.sampleGrid.length > 0)
     return (
         <thead>
             <tr>
                 <th>Report Type: {props.reportData.reportType} </th>
-                <th>Report {props.reportData.reportNumber} </th>
-                <th>Samples {props.reportData.firstLabId} - {props.reportData.firstLabId + props.reportData.numSamples - 1}</th>
+                <th>{rNum}</th>
+                <th>Samples: {sampleRange}</th>
                 <th><button id="saveButton" onClick={() => props.saveReport()}>Save Report</button></th>
                 <th><button id="clearButton" onClick={() => props.clearGrid()}>Clear Grid</button></th>
             </tr>
         </thead>
     );
+
+    else
+        return (
+        <thead>
+            <tr>
+                <th>Report Type: {props.reportData.reportType} </th>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+            </tr>
+        </thead>
+    );
+
 };
 
 const TableHeader = () => {
@@ -24,8 +45,10 @@ const TableHeader = () => {
             <tr>
                 <th>Lab ID</th>
                 <th>Crop/Code</th>
-                <th>Tests</th>
+                <th>Extra Tests</th>
                 <th>Comment</th>
+                <th>Insert</th>
+                <th>Delete</th>
             </tr>
         </thead>
     );

@@ -7,7 +7,7 @@ import {plant_codes, waste_codes, solution_codes, media_codes,
         extra_tests, saved_reports, saved_report_ids, saved_plant_report_numbers, saved_waste_report_numbers,
         saved_solution_report_numbers, saved_media_report_numbers, saved_plant_lab_ids, saved_waste_lab_ids,
         saved_solution_lab_ids, saved_media_lab_ids,
-        isSolidWaste} from './data.js';
+        isSolidWaste, getStyledReportNumber} from './data.js';
 
 
 
@@ -225,30 +225,6 @@ class App extends Component {
         return [nextReportNumber, nextLabNumber];
     }
 
-    getStyledReportNumber = (type, number) => {
-
-        let styledNumber = "R";
-
-        switch(type)
-        {
-            case "Plant": styledNumber += "P"; break;
-            case "Waste": styledNumber += "W"; break;
-            case "Solution": styledNumber += "S"; break;
-            case "Media": styledNumber += "M"; break;
-            default: break;
-        }
-
-        if (number < 10) styledNumber += "00000";
-        else if (number < 100) styledNumber += "0000";
-        else if (number < 1000) styledNumber += "000";
-        else if (number < 1000) styledNumber += "00";
-        else if (number < 10000) styledNumber += "0";
-
-        styledNumber += number;
-
-        return styledNumber;
-    }
-
     insertSample = (index) => {
 
         let samples = this.state.sampleGrid;
@@ -329,7 +305,7 @@ class App extends Component {
         else
         {
 
-            let newId = this.getStyledReportNumber(this.state.sampleType, this.state.reportNumber);
+            let newId = getStyledReportNumber(this.state.sampleType, this.state.reportNumber);
 
             let newReport = {
 
@@ -350,7 +326,7 @@ class App extends Component {
 
             else
             {
-                window.alert("Saving report " + newId);
+                window.alert("Saving report " + newId + ".");
                 saved_reports.push(newReport);
                 saved_report_ids.push(newId);
                 this.clearGrid();

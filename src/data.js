@@ -133,6 +133,43 @@ export function isSolidWaste(code) {
     return waste_codes_solid.includes(code);
 }
 
+export function getStyledLabId(type, number) {
+
+    switch(type)
+    {
+        case "Plant": return ("P" + number);
+        case "Waste":  return ("W" + number);
+        case "Solution":  return ("S" + number);
+        case "Media":  return ("M" + number);
+        default: return number;
+    }
+
+}
+
+export function getStyledReportNumber(type, number) {
+
+        let styledNumber = "R";
+
+        switch(type)
+        {
+            case "Plant": styledNumber += "P"; break;
+            case "Waste": styledNumber += "W"; break;
+            case "Solution": styledNumber += "S"; break;
+            case "Media": styledNumber += "M"; break;
+            default: break;
+        }
+
+        if (number < 10) styledNumber += "00000";
+        else if (number < 100) styledNumber += "0000";
+        else if (number < 1000) styledNumber += "000";
+        else if (number < 1000) styledNumber += "00";
+        else if (number < 10000) styledNumber += "0";
+
+        styledNumber += number;
+
+        return styledNumber;
+    }
+
 export const solution_codes = [
 
     "AS - Source Water",

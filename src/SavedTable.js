@@ -19,7 +19,7 @@ const SavedTable = (props) => {
 
     return (
 
-        <table className="striped-table pwsm-table">
+        <table className="striped-table">
             <thead>
                 <tr>
                 <th>Report Number</th>

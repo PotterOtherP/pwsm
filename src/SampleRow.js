@@ -2,7 +2,7 @@ import React from 'react';
 import {all_plant_tests, all_waste_tests, all_solution_tests, all_media_tests,
         default_plant_tests, default_waste_liquid_tests, default_waste_solid_tests,
         default_solution_tests, default_media_tests,
-        isSolidWaste} from './data.js';
+        isSolidWaste, getStyledLabId} from './data.js';
 
 
 
@@ -11,17 +11,19 @@ const TestEditForm = (props) => {
     return (
 
         <form id={props.id + "testEditForm"} style={{display: "none",}} >
+        <div className="testEditForm">
         {
-
             props.testArray.map( (test) => {
-                return(<div key={test}>
-                        <input type="checkbox" id={props.id + test} name={test} value={test}
+                return(<div key={test} className="testCheckbox">
+                        <input type="checkbox"  id={props.id + test} name={test} value={test}
                         defaultChecked={props.assignedTests.includes(test)? true: false}
-                        onChange={(event) => props.assignTest(props.id, test, event.target.checked)} />
+                        onChange={(event) => props.assignTest(props.id, test, event.target.checked)}></input>
                         <label htmlFor={props.id + test}>{test}</label>
+                        
                        </div>);
             })
         }
+        </div>
 
         </form>
 
@@ -70,7 +72,7 @@ const SampleRow = (props) => {
 
     return (
         <tr>
-            <td>{props.sampleId}</td>
+            <td>{getStyledLabId(props.type, props.sampleId)}</td>
             <td>
                         <select name="sampleCode" id="codeSelect"  value={props.code} onChange={(event) => props.setSampleCode(props.index, event.target.value)} >
                             {props.dropDown.map( (code, index) => {

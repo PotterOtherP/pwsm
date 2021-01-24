@@ -11,9 +11,39 @@
 }
 
 .table-container{
+    position: relative;
+    z-index: 1;
     overflow: auto;
     max-height: 500px;
 
+}
+
+.testEditForm {
+
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    padding: 5px;
+    width: 300px;
+    height: 225px;
+    border: 2px solid #aaa;
+    border-radius: 5px;
+    align-items: center;
+    position: relative;
+    bottom: 66px;
+    left: 320px;
+    z-index: 1;
+    background-color: #fff;
+}
+
+.testCheckbox {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.testCheckbox > label {
+    margin: 0px;
+    margin-left: 5px;
 }
 
 body {
