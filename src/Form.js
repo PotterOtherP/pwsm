@@ -95,29 +95,36 @@ class Form extends Component {
             <form>
 
                 <fieldset className="flex-row" onChange={this.handleSampleTypeChange}>
-                    Select Sample Type:
+                    <h4>Select Sample Type:</h4>
                     <input type="radio" id="plant" name="sampleType" value="Plant" defaultChecked />
-                    <label htmlFor="plant">Plant</label>
+                    <label htmlFor="plant"><div className="radioArea plantBG">Plant</div></label>
+
                     <input type="radio" id="waste" name="sampleType" value="Waste" />
-                    <label htmlFor="waste">Waste</label>
+                    <label htmlFor="waste"><div className="radioArea wasteBG">Waste</div></label>
+
                     <input type="radio" id="solution" name="sampleType" value="Solution" />
-                    <label htmlFor="solution">Solution</label>
+                    <label htmlFor="solution"> <div className="radioArea solutionBG">Solution</div></label>
+
                     <input type="radio" id="media" name="sampleType" value="Media" />
-                    <label htmlFor="media">Media</label>
+                    <label htmlFor="media"><div className="radioArea mediaBG">Media</div></label>
                 </fieldset>
 
                 <fieldset className="flex-row" onChange={this.handleChange}>
-                    Select Report Type:
+                    <h4>Select Report Type:</h4>
                     <input type="radio" id="predictive" name="reportType" value="Predictive" defaultChecked />
-                    <label htmlFor="predictive">Predictive</label>
+                    <label htmlFor="predictive"> <div className="radioArea reportTypeBG">Predictive</div></label>
+
                     <input type="radio" id="diagnostic" name="reportType" value="Diagnostic" />
-                    <label htmlFor="diagnostic">Diagnostic</label>
+                    <label htmlFor="diagnostic"> <div className="radioArea reportTypeBG">Diagnostic</div></label>
+
                     <input type="radio" id="research" name="reportType" value="Research" />
-                    <label htmlFor="research">Research</label>
+                    <label htmlFor="research"> <div className="radioArea reportTypeBG">Research</div></label>
+
                     <input type="radio" id="internal" name="reportType" value="Internal" />
-                    <label htmlFor="internal">Internal</label>
+                    <label htmlFor="internal"> <div className="radioArea reportTypeBG">Internal</div></label>
+
                     <input type="radio" id="out-of-state" name="reportType" value="Out of State" />
-                    <label htmlFor="out-of-state">Out of State</label>
+                    <label htmlFor="out-of-state"> <div className="radioArea reportTypeBG">Out of State</div></label>
                 </fieldset>
                 
                     <div className="flex-row">

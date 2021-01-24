@@ -11,9 +11,6 @@ import {plant_codes, waste_codes, solution_codes, media_codes,
 
 
 
-
-
-
 class App extends Component {
 
     componentDidMount() {
