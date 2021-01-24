@@ -2,18 +2,36 @@ import React, {Component} from 'react';
 
 class Form extends Component {
 
+    componentDidMount() {
+        this.setState({receiveDate: this.getCurrentDate()});
+    }
+
     initialState = {
 
         sampleType: 'Plant',
         reportType: 'Predictive',
         numSamples: 1,
         sampleCode: this.props.dropDown[0],
+        receiveDate: "1985-01-01"
 
     };
 
 
 
     state = this.initialState;
+
+
+
+    getCurrentDate = () => {
+
+        const date = new Date();
+        const year = date.getUTCFullYear();
+        let month = date.getUTCMonth() + 1;
+            if (month < 10) month = "0" + month;
+        const day = date.getUTCDate();
+
+        return (year + "-" + month + "-" + day);
+    }
 
     handleChange = (event) => {
 
@@ -77,6 +95,7 @@ class Form extends Component {
             <form>
 
                 <fieldset className="flex-row" onChange={this.handleSampleTypeChange}>
+                    Select Sample Type:
                     <input type="radio" id="plant" name="sampleType" value="Plant" defaultChecked />
                     <label htmlFor="plant">Plant</label>
                     <input type="radio" id="waste" name="sampleType" value="Waste" />
@@ -88,6 +107,7 @@ class Form extends Component {
                 </fieldset>
 
                 <fieldset className="flex-row" onChange={this.handleChange}>
+                    Select Report Type:
                     <input type="radio" id="predictive" name="reportType" value="Predictive" defaultChecked />
                     <label htmlFor="predictive">Predictive</label>
                     <input type="radio" id="diagnostic" name="reportType" value="Diagnostic" />
@@ -118,6 +138,13 @@ class Form extends Component {
                         <label htmlFor="numSamples">Number of Samples: </label>
                         <input type="number" id="numSamples" name="numSamples" onChange={this.handleChange}
                         onFocus={this.selectNumSamples} value={this.state.numSamples} min="1" max="500" required />
+                        </td>
+
+                        <td>
+                        <label htmlFor="receiveDate">Date Received:</label>
+                        <input type="date" id="receiveDate" name="receiveDate"
+                        defaultValue={this.getCurrentDate()}
+                        onChange={this.handleChange}/>
                         </td>
 
                     </tr>

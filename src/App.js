@@ -2,253 +2,21 @@ import React, {Component} from 'react';
 import Table from './Table';
 import SavedTable from './SavedTable';
 import Form from './Form';
-
-const plant_codes = [
-
-    "Acacia",
-    "Ailanthus",
-    "Alfalfa",
-    "Apple",
-    "Asparagus",
-    "Basil",
-    "Beans",
-    "Bentgrass",
-    "Bermudagrass",
-    "Blackberry",
-    "Blueberry",
-    "Broccoli",
-    "Brussels sprouts",
-    "Cabbage",
-    "Canola",
-    "Cantaloupe",
-    "Carinata",
-    "Cauliflower",
-    "Cedar",
-    "Collards",
-    "Corn",
-    "Cotton",
-    "Cucumber",
-    "Dandelion",
-    "Dogwood",
-    "Elm",
-    "Fescue",
-    "Fig",
-    "Fir, Fraser",
-    "GH Hemp",
-    "GH Strawberry",
-    "GH Tomato",
-    "Grape, Muscadine",
-    "Grape, Vinifera",
-    "Honeydew",
-    "Kale",
-    "Kohlrabi",
-    "Lettuce",
-    "Oats",
-    "Okra",
-    "Peach",
-    "Pear",
-    "Pepper",
-    "Pine",
-    "Poinsettia",
-    "Raspberry",
-    "Rice",
-    "Soybean",
-    "Spinach",
-    "Squash",
-    "Strawberry",
-    "Tobacco",
-    "Tomato",
-    "Turfgrass",
-    "Turnip",
-    "Watermelon",
-    "Wheat",
-    "Zucchini"
-
-];
-
-const waste_codes = [
-
-    "ALS - Swine Lagoon Liquid",
-    "ALF - Swine Farrow to Wean",
-    "ALP - Poultry Lagoon Liquid",
-    "ALO - Other Lagoon Liquid",
-    "ASP - Poultry Lagoon Sludge",
-    "ASS - Swine Lagoon Sludge",
-    "ASO - Other Lagoon Sludge",
-    "BID - Domestic septage",
-    "BCO - Biosolids, composted",
-    "BIO - Biosolids, other",
-    "BIX - Biosolids, mixed",
-    "BLL - Leachates/effluents or reclaimed water",
-    "CSW - Wood ash",
-    "CSC - Coal ash",
-    "CSB - Biochar",
-    "CSO - Ash, mixed or other",
-    "FCB - Composted manure - Beef",
-    "FCD - Composted manure - Dairy",
-    "FCH - Composted manure - Horse",
-    "FCP - Composted manure - Poultry",
-    "FCS - Composted manure - Swine",
-    "FCO - Composted manure - Other",
-    "FPM - Compost, poultry mortality",
-    "FSM - Compost, swine mortality",
-    "FCW - Compost, plant material",
-    "FCX - Compost, mixed materials",
-    "FCV - Vermicompost",
-    "GTL - Grease trap water",
-    "HBB - Broiler breeder litter",
-    "HBP - Broiler pullet litter",
-    "HLB - Broiler litter",
-    "HLL - Layer litter",
-    "HLT - Turkey litter",
-    "IOC - Paper fiber/pulp",
-    "IOL - Lime by-products",
-    "LSB - Beef Slurry",
-    "LSD - Dairy Slurry",
-    "LSS - Swine Slurry",
-    "LSO - Other Slurry",
-    "NBS - Wood waste/sawdust",
-    "NCR - Raw plant material/crop residues",
-    "NSF - Food/beverage by-products (solid)",
-    "NLF - Food/beverage by-products (liquid)",
-    "NSA - Animal by-products (solid)",
-    "NLA - Animal by-products (liquid)",
-    "NSO - Non-composted solid, other",
-    "NLO - Non-composted liquid, other",
-    "SSB - Beef Surface Scraped/Stockpiled",
-    "SSD - Dairy Surface Scraped/Stockpiled",
-    "SSH - Horse Surface Scraped/Stockpiled",
-    "SSS - Swine Surface Scraped/Stockpiled",
-    "SSO - Other Surface Scraped/Stockpiled",
-
-];
-
-const solution_codes = [
-
-    "AS - Source Water",
-    "AP - Pond Water",
-    "AO - Other Aquaculture",
-    "FP - Fish Production/Recreation",
-    "QG - Ground Water",
-    "QH - Household (nonpotable",
-    "QS - Surface Water",
-    "QO - Other Water",
-    "NS - General Nutrient Solution",
-    "NT - Tobacco Nutrient Solution",
-    "NL - Pour-thru Leachate",
-    "NO - Other Nutrient Solution",
-    "LC - Cattle Water",
-    "LH - Horse Water",
-    "LS - Swine Water",
-    "LO - Other Livestock Water",
-    "IW - General Irrigation",
-    "IO - Overhead Irrigation",
-    "IT - Trickle Irrigation",
-    "HT - Hydroponic Tomato",
-    "HC - Hydroponic Cucumber",
-    "HL - Hydroponic Lettuce",
-    "HH - Hydroponic Herb",
-    "HH - Other Hydroponic",
-    "SP - Pesticide Solution",
-    "SH - Hydroponic Nutrient",
-    "SF - Floriculture Production",
-    "ST - Tobacco Transplant Production",
-    "SV - Vegetable Transplant Production",
-    "SO - Other Solution Source"
-
-];
-
-const media_codes = [
-
-    "GHF - GH Floriculture",
-    "GHV - GH Vegetable",
-    "NUR - Nursery Crop",
-    "TOB - Tobacco Transplants",
-    "OTH - Other"
-
-];
-
-const default_plant_tests = ["ICP", "N"];
-const default_waste_liquid_tests = ["ICP", "pH", "TKN"];
-const default_waste_solid_tests = ["DM", "ICP", "N"];
-const default_solution_tests = ["CBC", "EC", "ICP", "NH4/NO3", "pH"];
-const default_media_tests = ["EC", "ICP", "pH"];
-
-const extra_tests = {
-
-    "Alfalfa": ["Mo"],
-    "Broccoli": ["Mo"],
-    "Brussels sprouts": ["Mo"],
-    "Cauliflower": ["Mo"],
-    "Cabbage": ["Mo"],
-    "Canola": ["Mo"],
-    "Collards": ["Mo"],
-    "Kale": ["Mo"],
-    "Kohlrabi": ["Mo"],
-    "Poinsettia": ["Mo"],
-    "Spinach": ["Mo"],
-    "Turnip": ["Mo"],
-
-    "Strawberry": ["NO3"],
-    "Cotton": ["NO3"],
-
-    "BID - Domestic septage": ["pH", "EC"],
-    "BCO - Biosolids, composted": ["C", "pH", "EC"],
-    "BIO - Biosolids, other": ["C", "pH", "EC"],
-    "BIX - Biosolids, mixed": ["C", "pH", "EC"],
-    "BLL - Leachates/effluents or reclaimed water": ["pH", "EC"],
-
-    "CSW - Wood ash": ["C", "pH", "EC"],
-    "CSC - Coal ash": ["C", "pH", "EC"],
-    "CSB - Biochar": ["C", "pH", "EC"],
-    "CSO - Ash, mixed or other": ["C", "pH", "EC"],
-
-    "FCB - Composted manure - Beef": ["C", "pH", "EC"],
-    "FCD - Composted manure - Dairy": ["C", "pH", "EC"],
-    "FCH - Composted manure - Horse": ["C", "pH", "EC"],
-    "FCP - Composted manure - Poultry": ["C", "pH", "EC"],
-    "FCS - Composted manure - Swine": ["C", "pH", "EC"],
-    "FCO - Composted manure - Other": ["C", "pH", "EC"],
-    "FPM - Compost, poultry mortality": ["C", "pH", "EC"],
-    "FSM - Compost, swine mortality": ["C", "pH", "EC"],
-    "FCW - Compost, plant material": ["C", "pH", "EC"],
-    "FCX - Compost, mixed materials": ["C", "pH", "EC"],
-    "FCV - Vermicompost": ["C", "pH", "EC"],
-
-    "GTL - Grease trap water": ["pH", "EC"],
-
-    "IOC - Paper fiber/pulp": ["C", "pH", "EC"],
-    "IOL - Lime by-products": ["CCE", "pH", "EC"],
-
-    "NBS - Wood waste/sawdust": ["C", "pH", "EC"],
-    "NCR - Raw plant material/crop residues": ["C", "pH", "EC"],
-    "NSF - Food/beverage by-products (solid)": ["C", "pH", "EC"],
-    "NLF - Food/beverage by-products (liquid)": ["pH", "EC"],
-    "NSA - Animal by-products (solid)": ["C", "pH", "EC"],
-    "NLA - Animal by-products (liquid)": ["pH", "EC"],
-    "NSO - Non-composted solid, other": ["C", "pH", "EC"],
-    "NLO - Non-composted liquid, other": ["pH", "EC"]
+import {plant_codes, waste_codes, solution_codes, media_codes,
+        default_plant_tests, default_waste_solid_tests, default_waste_liquid_tests, default_solution_tests, default_media_tests,
+        extra_tests, saved_reports, saved_report_ids, saved_plant_report_numbers, saved_waste_report_numbers,
+        saved_solution_report_numbers, saved_media_report_numbers, saved_plant_lab_ids, saved_waste_lab_ids,
+        saved_solution_lab_ids, saved_media_lab_ids,
+        isSolidWaste} from './data.js';
 
 
-};
 
-const saved_reports = [];
-const saved_report_ids = [];
 
-const saved_plant_report_numbers = [];
-const saved_waste_report_numbers = [];
-const saved_solution_report_numbers = [];
-const saved_media_report_numbers = [];
 
-const saved_plant_lab_ids = [];
-const saved_waste_lab_ids = [];
-const saved_solution_lab_ids = [];
-const saved_media_lab_ids = [];
 
 class App extends Component {
 
     componentDidMount() {
-        console.log("Hello.");
 
         this.setState(state => {
 
@@ -272,6 +40,7 @@ class App extends Component {
         reportNumber: 101,
         firstLabId: 1001,
         numSamples: 1,
+        receiveDate: "1985-01-01",
         sampleCode: '',
         sampleGrid: []
     };
@@ -294,7 +63,6 @@ class App extends Component {
 
     assignTest = (id, test, val) => {
 
-        console.log("assignTest() function: " + id + " " + test + " " + val);
 
         this.setState(state => {
 
@@ -306,16 +74,13 @@ class App extends Component {
                 {
                     if (val === true && !row.tests.includes(test))
                     {
-                        console.log("Adding " + test + " to sample " + id);
                         row.tests.push(test);
                         row.tests.sort();
-
 
                     }
 
                     else if (val === false && row.tests.includes(test))
                     {
-                        console.log("Removing " + test + " from sample " + id);
                         row.tests = row.tests.filter(item => item !== test);
 
                     }
@@ -349,8 +114,6 @@ class App extends Component {
 
     clearGrid = () => {
 
-        console.log("Clearing grid");
-
         this.setState(state => {
 
             let samples = state.sampleGrid;
@@ -382,6 +145,8 @@ class App extends Component {
         this.setState(state => {
 
             return {
+                reportNumber: this.getNextNumbers(this.state.sampleType)[0],
+                firstLabId: this.getNextNumbers(this.state.sampleType)[1],
                 createDisplay: true,
                 savedDisplay: false
             }
@@ -526,7 +291,8 @@ class App extends Component {
                 sampleType: reportInfo.sampleType,
                 reportType: reportInfo.reportType,
                 numSamples: Number.parseInt(reportInfo.numSamples),
-                sampleCode: reportInfo.sampleCode
+                sampleCode: reportInfo.sampleCode,
+                receiveDate: reportInfo.receiveDate
             };
 
         });
@@ -555,7 +321,7 @@ class App extends Component {
 
         if (this.state.sampleGrid.length < 1)
         {
-            window.alert("Nothing to save!");
+            window.alert("Add samples with \"Create Grid\" to create a report.");
         }
 
         else
@@ -650,11 +416,6 @@ class App extends Component {
 
         });
 
-        console.log(type);
-        console.log(this.state.formSampleType);
-        console.log(this.getNextNumbers(type)[0]);
-        console.log(this.getNextNumbers(type)[1]);
-
         this.setState(state => {
         
             return {
@@ -666,10 +427,6 @@ class App extends Component {
     };
 
     render() {
-
-        // console.clear();
-
-        
 
         if (this.state.createDisplay)
         {
@@ -729,55 +486,6 @@ function copyArray(arr)
         result.push(item);
 
     return result;
-}
-
-
-
-function isSolidWaste(code)
-{
-    switch (code)
-    {
-        case "SSB - Beef Surface Scraped/Stockpiled":
-        case "SSD - Dairy Surface Scraped/Stockpiled":
-        case "SSH - Horse Surface Scraped/Stockpiled":
-        case "SSS - Swine Surface Scraped/Stockpiled":
-        case "SSO - Other Surface Scraped/Stockpiled":
-        case "HBB - Broiler breeder litter":
-        case "HBP - Broiler pullet litter":
-        case "HLB - Broiler litter":
-        case "HLL - Layer litter":
-        case "HLT - Turkey litter":
-        case "FCB - Composted manure - Beef":
-        case "FCD - Composted manure - Dairy":
-        case "FCH - Composted manure - Horse":
-        case "FCP - Composted manure - Poultry":
-        case "FCS - Composted manure - Swine":
-        case "FCO - Composted manure - Other":
-        case "FPM - Compost, poultry mortality":
-        case "FSM - Compost, swine mortality":
-        case "FCW - Compost, plant material":
-        case "FCX - Compost, mixed materials":
-        case "FCV - Vermicompost":
-        case "NCR - Raw plant material/crop residues":
-        case "NBS - Wood waste/sawdust":
-        case "NSF - Food/beverage by-products (solid)":
-        case "NSA - Animal by-products (solid)":
-        case "IOC - Paper fiber/pulp":
-        case "IOL - Lime by-products":
-        case "NSO - Non-composted solid, other":
-        case "CSW - Wood ash":
-        case "CSC - Coal ash":
-        case "CSB - Biochar":
-        case "CSO - Ash, mixed or other":
-        case "BCO - Biosolids, composted":
-        case "BIO - Biosolids, other":
-        case "BIX - Biosolids, mixed":
-        {
-            return true;
-        }
-
-        default: return false;
-    }
 }
 
 function getTests(type, code)
