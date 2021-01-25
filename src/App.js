@@ -16,6 +16,9 @@ import {plant_codes, waste_codes, solution_codes, media_codes,
  */
 class App extends Component {
 
+    /**
+     * Ensures that the correct report number and lab IDs are displayed with every render.
+     */
     componentDidMount() {
 
         this.setState(state => {
@@ -28,6 +31,7 @@ class App extends Component {
 
     }
 
+    /** Create and set the initial state */
     initialState = {
 
         createDisplay: true,
@@ -50,6 +54,9 @@ class App extends Component {
 
 
 
+    /**
+     * Adds a comment to a row in the sample grid
+     */
     addComment = (key, newComment) => {
 
         this.setState(state => {
@@ -61,6 +68,11 @@ class App extends Component {
 
     }
 
+    /**
+     * Assigns (or removes) a lab test from a sample when
+     * it is checked or unchecked by the user in the test
+     * checkbox menu.
+     */
     assignTest = (id, test, val) => {
 
 
@@ -94,6 +106,9 @@ class App extends Component {
     }
 
 
+    /**
+     * Refreshes the sample grid lab IDs whenever a row is inserted or deleted.
+     */
     adjustGridIdNumbers = () => {
 
         this.refreshSampleIDs();
@@ -112,6 +127,9 @@ class App extends Component {
 
     }
 
+    /** Removes all samples from the grid (and the state), ensuring a clean slate. 
+     *
+     */
     clearGrid = () => {
 
         this.setState(state => {
@@ -133,14 +151,18 @@ class App extends Component {
         });
     }
 
+    /**
+     * Removes a saved report from the report storage array.
+     */
     deleteSavedReport = (reportNumber) =>
     {
 
     }
 
+    /**
+     * Shows the report creation screen on the page, hiding the worklist/report edit screeen.
+     */
     displayCreate = () => {
-
-
 
         this.setState(state => {
 
@@ -158,6 +180,9 @@ class App extends Component {
         })
     }
 
+    /**
+     * Shows the worklist/report edit screen, hides the creation screen.
+     */
     displayReports = () => {
 
         if (saved_reports.length < 1)
@@ -176,6 +201,9 @@ class App extends Component {
 
     }
 
+    /**
+     * Returns the appropriate code dropdown menu for the specified sample type.
+     */
     getDropDown = (type) => {
 
         switch (type)
@@ -188,6 +216,10 @@ class App extends Component {
         }
     }
 
+    /**
+     * Returns the next report number and lab ID number based on previously
+     * used numbers for the current sample type.
+     */
     getNextNumbers = (type) => {
 
         let report_numbers = saved_plant_report_numbers;
@@ -228,42 +260,12 @@ class App extends Component {
         return [nextReportNumber, nextLabNumber];
     }
 
-    insertSample = (index) => {
-
-        let samples = this.state.sampleGrid;
-        let copy = Object.create(samples[index]);
-        copy = Object.assign(copy, samples[index]);
-
-        copy.tests = copyArray(samples[index].tests);
-
-        samples.splice(index, 0, copy);
-
-        this.setState(state => {
-            return { sampleGrid: samples };
-        });
-
-        this.adjustGridIdNumbers();
-    }
-
-    refreshSampleIDs = () => {
-
-        this.setState(state => {
-            let newNumSamples = state.sampleGrid.length;
-            return { numSamples: newNumSamples };
-        });
-    }
-
-    removeSample = (index) => {
-
-        this.setState(state => {
-            const samples = state.sampleGrid.filter((row, i) => i !== index);
-
-            return { sampleGrid: samples };
-        });
-
-        this.adjustGridIdNumbers();
-    }
-
+    /**
+     * When the form is submitted with the Create Report button,
+     * this function is called to transmit the form data to the
+     * App state.
+     * The sample grid is updated after the first setState() call.
+     */
     handleSubmit = (reportInfo) => {
 
         this.setState(state => {
@@ -298,6 +300,56 @@ class App extends Component {
     
     }
 
+
+    /**
+     * Duplicates a row in the sample grid.
+     */
+    insertSample = (index) => {
+
+        let samples = this.state.sampleGrid;
+        let copy = Object.create(samples[index]);
+        copy = Object.assign(copy, samples[index]);
+
+        copy.tests = copyArray(samples[index].tests);
+
+        samples.splice(index, 0, copy);
+
+        this.setState(state => {
+            return { sampleGrid: samples };
+        });
+
+        this.adjustGridIdNumbers();
+    }
+
+    /**
+     * When the sample grid length changes, the number of samples is adjusted accordingly.
+     */
+    refreshSampleIDs = () => {
+
+        this.setState(state => {
+            let newNumSamples = state.sampleGrid.length;
+            return { numSamples: newNumSamples };
+        });
+    }
+
+    /**
+     * Removes a row from the sample grid.
+     */
+    removeSample = (index) => {
+
+        this.setState(state => {
+            const samples = state.sampleGrid.filter((row, i) => i !== index);
+
+            return { sampleGrid: samples };
+        });
+
+        this.adjustGridIdNumbers();
+    }
+
+
+    /**
+     * Saves a report to the storage array.
+     */
     saveReport = () => {
 
         if (this.state.sampleGrid.length < 1)
@@ -377,6 +429,9 @@ class App extends Component {
 
     }
 
+    /**
+     *
+     */
     setReportType = (type) => {
         this.setState(state => {
             return ({reportType: type});

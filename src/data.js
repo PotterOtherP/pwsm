@@ -1,5 +1,61 @@
-const myConstant = 4242;
+/**
+ * This file contains data and functions used by multiple classes.
+ */
 
+/**
+ * Returns true if a waste sample is a solid type, false if liquid.
+ * Used to determine which default tests are assigned.
+ */
+export function isSolidWaste(code) {
+    return waste_codes_solid.includes(code);
+}
+
+/**
+ * Returns a formatted lab ID number with the appropriate letter in front.
+ */
+export function getStyledLabId(type, number) {
+
+    switch(type)
+    {
+        case "Plant": return ("P" + number);
+        case "Waste":  return ("W" + number);
+        case "Solution":  return ("S" + number);
+        case "Media":  return ("M" + number);
+        default: return number;
+    }
+
+}
+
+/**
+ * Returns a formatted lab report number with the appropriate letter
+ * and leading zeroes.
+ */
+export function getStyledReportNumber(type, number) {
+
+    let styledNumber = "R";
+
+    switch(type)
+    {
+        case "Plant": styledNumber += "P"; break;
+        case "Waste": styledNumber += "W"; break;
+        case "Solution": styledNumber += "S"; break;
+        case "Media": styledNumber += "M"; break;
+        default: break;
+    }
+
+    // if (number < 10) styledNumber += "00000";
+    // else if (number < 100) styledNumber += "0000";
+    // else if (number < 1000) styledNumber += "000";
+    // else if (number < 1000) styledNumber += "00";
+    // else if (number < 10000) styledNumber += "0";
+
+    styledNumber += number;
+
+    return styledNumber;
+}
+
+
+/** All plant codes */
 export const plant_codes = [
 
     "Acacia",
@@ -63,8 +119,7 @@ export const plant_codes = [
 
 ];
 
-
-
+/** All liquid waste codes */
 export const waste_codes_liquid = [
 
     "ALS - Swine Lagoon Liquid",
@@ -87,6 +142,7 @@ export const waste_codes_liquid = [
 
 ];
 
+/** All solid waste codes */
 export const waste_codes_solid = [
 
     "BCO - Biosolids, composted",
@@ -127,49 +183,13 @@ export const waste_codes_solid = [
 
 ];
 
+
+/** All waste codes */
 export const waste_codes = waste_codes_liquid.concat(waste_codes_solid).sort();
 
-export function isSolidWaste(code) {
-    return waste_codes_solid.includes(code);
-}
 
-export function getStyledLabId(type, number) {
 
-    switch(type)
-    {
-        case "Plant": return ("P" + number);
-        case "Waste":  return ("W" + number);
-        case "Solution":  return ("S" + number);
-        case "Media":  return ("M" + number);
-        default: return number;
-    }
-
-}
-
-export function getStyledReportNumber(type, number) {
-
-        let styledNumber = "R";
-
-        switch(type)
-        {
-            case "Plant": styledNumber += "P"; break;
-            case "Waste": styledNumber += "W"; break;
-            case "Solution": styledNumber += "S"; break;
-            case "Media": styledNumber += "M"; break;
-            default: break;
-        }
-
-        // if (number < 10) styledNumber += "00000";
-        // else if (number < 100) styledNumber += "0000";
-        // else if (number < 1000) styledNumber += "000";
-        // else if (number < 1000) styledNumber += "00";
-        // else if (number < 10000) styledNumber += "0";
-
-        styledNumber += number;
-
-        return styledNumber;
-    }
-
+/** All solution codes */
 export const solution_codes = [
 
     "AS - Source Water",
@@ -205,6 +225,8 @@ export const solution_codes = [
 
 ];
 
+
+/** All media codes */
 export const media_codes = [
 
     "GHF - GH Floriculture",
@@ -215,18 +237,22 @@ export const media_codes = [
 
 ];
 
+/** All possible tests that can be assigned to each type, used in the checkbox menus. */
 export const all_plant_tests = [ "Biomass", "C", "Cl", "DW", "ICP", "Mo", "N", "NO3"];
 export const all_waste_tests = [ "C", "CCE", "DM", "EC", "HM", "HM - All", "ICP", "Mo", "N", "NH4/NO3", "pH", "TKN"];
 export const all_solution_tests = [ "CBC", "Cl", "EC", "ICP", "Mo", "NH4/NO3", "pH", "Urea" ];
 export const all_media_tests = [ "Bulk Density", "Cl", "EC", "ICP", "Mo", "NH4/NO3", "pH", "Urea" ];
 
 
+/** Default tests assigned to every sample of a particular type. */
 export const default_plant_tests = ["ICP", "N"];
 export const default_waste_liquid_tests = ["ICP", "pH", "TKN"];
 export const default_waste_solid_tests = ["DM", "ICP", "N"];
 export const default_solution_tests = ["CBC", "EC", "ICP", "NH4/NO3", "pH"];
 export const default_media_tests = ["EC", "ICP", "pH"];
 
+
+/** An object mapping a sample to the extra, non-default tests it gets automatically assigned. */
 export const extra_tests = {
 
     "Alfalfa": ["Mo"],
@@ -285,6 +311,9 @@ export const extra_tests = {
 
 };
 
+
+
+/** Emptry arrays that will be used to store report data created by the user. */
 export const saved_reports = [];
 export const saved_report_ids = [];
 
@@ -298,4 +327,8 @@ export const saved_waste_lab_ids = [];
 export const saved_solution_lab_ids = [];
 export const saved_media_lab_ids = [];
 
+
+
+/** Something to export */
+const myConstant = 4242;
 export default myConstant;

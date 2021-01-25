@@ -1,13 +1,43 @@
-#testEdit {
-    float: right;
+body {
+    background-color: #ffffee;
 }
 
-#clearGrid {
-    float: right;
+fieldset {
+  /*padding: 1rem;*/
+  /*margin: 1.5rem 0;*/
+  align-items: center;
+  margin: 0px;
+  padding: 0px;
 }
 
-#displaySavedButton {
-    margin-left: 0px;
+header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-top: 10px;
+}
+
+input:focus {
+    border: 3px solid #333;
+}
+
+label {
+
+}
+
+select {
+    border: 1px solid black;
+    background-color: #fff;
+}
+
+[type='radio'] {
+    appearance: none;
+    margin-left: 10px;
+}
+
+[type='number'], [type='date'] {
+    border: 1px solid black;
+    background-color: #fff;
 }
 
 .container {
@@ -16,8 +46,50 @@
 
 }
 
+.delete, .delete:hover, .delete:focus {
+    background-color: #cd212a;
+    font-size: 25px;
+}
+
+.duplicate, .duplicate:hover, .duplicate:focus {
+    background-color: green;
+    font-size: 30px;
+}
+
 .flex-row {
     margin: 0px;
+}
+
+.form-bottom-row {
+    height: 100px;
+    justify-content: space-between;
+}
+
+.gridButton {
+    width: 66px;
+    height: 53px;
+}
+
+.plain-label {
+    font-weight: 600;
+}
+
+.radioArea {
+    width: 120px;
+    height: 50px;
+    border-radius: 15px;
+    margin: 20px;
+    text-align: center;
+    padding-top: 12px;
+
+}
+
+.striped-table tbody tr:nth-child(odd) {
+  background-color: #f8f8f8;
+}
+
+.striped-table tbody tr:nth-child(even) {
+  background-color: #fff;
 }
 
 .table-container{
@@ -26,6 +98,17 @@
     /*overflow: auto;*/
     max-height: 500px;
 
+}
+
+.testCheckbox {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.testCheckbox > label {
+    margin: 0px;
+    margin-left: 5px;
 }
 
 .testEditForm {
@@ -45,127 +128,9 @@
     background-color: #fff;
 }
 
-.testCheckbox {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-}
-
-.testCheckbox > label {
-    margin: 0px;
-    margin-left: 5px;
-}
-
-.plain-label {
-    font-weight: 600;
-}
-
-#codeColor {
-    background-color: #ffff99;
-    border-radius: 10px;
-    padding: 10px;
-    width: 160px;
-}
-
-#codeSelect {
-    width: 350px;
-}
-
-body {
-    background-color: #ffffee;
-}
-
-label {
-
-}
-
-select {
-    border: 1px solid black;
-    background-color: #fff;
-}
-
-
-
-
-
-[type='number'], [type='date'] {
-    border: 1px solid black;
-    background-color: #fff;
-}
-
-.striped-table tbody tr:nth-child(odd) {
-  background-color: #f8f8f8;
-}
-
-.striped-table tbody tr:nth-child(even) {
-  background-color: #fff;
-}
-
-header {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    margin-top: 10px;
-}
-
-fieldset {
-  /*padding: 1rem;*/
-  /*margin: 1.5rem 0;*/
-  align-items: center;
-  margin: 0px;
-  padding: 0px;
-}
-
-#codeSelect, #numSamplesInput, #receiveDateInput, #create-grid-button {
-    margin: 10px;
-}
-
-.form-bottom-row {
-    height: 100px;
-    justify-content: space-between;
-}
-
-.radioArea {
-    width: 120px;
-    height: 50px;
-    border-radius: 15px;
-    margin: 20px;
-    text-align: center;
-    padding-top: 12px;
-
-}
-
-.duplicate, .duplicate:hover, .duplicate:focus {
-    background-color: green;
-    font-size: 30px;
-}
-
-.delete, .delete:hover, .delete:focus {
-    background-color: #cd212a;
-    font-size: 25px;
-}
-
-.gridButton {
-    width: 66px;
-    height: 53px;
-}
-
 .plantBG {
     background-color: #ffff99;
     border: 1px solid #333;
-}
-
-.plantBG:active, .wasteBG:active, .solutionBG:active, .mediaBG:active {
-    background-color: white;
-}
-
-.plantBG:hover, .wasteBG:hover, .solutionBG:hover, .mediaBG:hover, .reportTypeBG:hover,
-.duplicate:hover, .delete:hover {
-    border: 3px solid #333;
-}
-
-input:focus {
-    border: 3px solid #333;
 }
 
 .wasteBG {
@@ -189,10 +154,43 @@ input:focus {
     border: 1px solid #333;
 }
 
-[type='radio'] {
-    appearance: none;
-    margin-left: 10px;
+.plantBG:active, .wasteBG:active, .solutionBG:active, .mediaBG:active {
+    background-color: white;
 }
+
+.plantBG:hover, .wasteBG:hover, .solutionBG:hover, .mediaBG:hover, .reportTypeBG:hover,
+.duplicate:hover, .delete:hover {
+    border: 3px solid #333;
+}
+
+
+#clearGrid {
+    float: right;
+}
+
+#codeColor {
+    background-color: #ffff99;
+    border-radius: 10px;
+    padding: 10px;
+    width: 160px;
+}
+
+#codeSelect {
+    width: 350px;
+}
+
+#displaySavedButton {
+    margin-left: 0px;
+}
+
+#testEdit {
+    float: right;
+}
+
+#codeSelect, #numSamplesInput, #receiveDateInput, #create-grid-button {
+    margin: 10px;
+}
+
 
 /* Colors from w3.css. Thank you W3! */
 
