@@ -417,7 +417,7 @@ class App extends Component {
             return (
             <div className="container">
             <header>
-            <h2>PWSM Receiving</h2>
+            <h3>PWSM Receiving</h3>
                 <button id="displaySavedButton"
                     onClick={() => this.displayReports()}>{"Show Saved Reports (" + saved_report_ids.length + ")"}
                 </button>

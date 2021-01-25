@@ -25,10 +25,10 @@ class Form extends Component {
     getCurrentDate = () => {
 
         const date = new Date();
-        const year = date.getUTCFullYear();
-        let month = date.getUTCMonth() + 1;
+        const year = date.getFullYear();
+        let month = date.getMonth() + 1;
             if (month < 10) month = "0" + month;
-        const day = date.getUTCDate();
+        const day = date.getDate();
 
         return (year + "-" + month + "-" + day);
     }
@@ -78,6 +78,18 @@ class Form extends Component {
 
 
     }
+
+    getCodePhrase = (type) => {
+
+        switch(type)
+        {
+            case "Plant": return "Plant Crop Name: ";
+            case "Waste": return "Waste Code: ";
+            case "Solution": return "Solution Code: ";
+            case "Media": return "Media Code: ";
+            default: return "Crop/Code";
+        }
+    }
         
 
     
@@ -98,7 +110,7 @@ class Form extends Component {
             <form>
 
                 <fieldset className="flex-row" onChange={this.handleSampleTypeChange}>
-                    <h5>Select Sample Type:</h5>
+                    <label>Select Sample Type:</label>
                     <input type="radio" id="plant" name="sampleType" value="Plant" defaultChecked />
                     <label htmlFor="plant"><div className="radioArea plantBG">Plant</div></label>
 
@@ -113,7 +125,7 @@ class Form extends Component {
                 </fieldset>
 
                 <fieldset className="flex-row" onChange={this.handleChange}>
-                    <h5>Select Report Type:</h5>
+                    <label>Select Report Type:</label>
                     <input type="radio" id="predictive" name="reportType" value="Predictive" defaultChecked />
                     <label htmlFor="predictive"> <div className="radioArea reportTypeBG">Predictive</div></label>
 
@@ -132,7 +144,7 @@ class Form extends Component {
 
                 <fieldset className="flex-row form-bottom-row">
 
-                    <label htmlFor="numSamples">Crop/Code:</label>
+                    <label htmlFor="numSamples">{this.getCodePhrase(this.state.sampleType)}</label>
                     <select name="sampleCode" id="codeSelect" onChange={this.handleChange} value={this.state.sampleCode} >
                         {this.props.dropDown.map( (code, index) => {
                             return (<option key={index} value={code}>{code}</option>);
@@ -150,38 +162,6 @@ class Form extends Component {
 
                 </fieldset>
                 
-                {/*<div>
-                                <table>
-                                <thead></thead>
-                                <tbody>
-                                <tr>
-                                    <td><label htmlFor="numSamples">Crop/Code:</label></td>
-                                    <td>
-                                    <select name="sampleCode" id="codeSelect" onChange={this.handleChange} value={this.state.sampleCode} >
-                                        {this.props.dropDown.map( (code, index) => {
-                                            return (<option key={index} value={code}>{code}</option>);
-                                        })}
-                                    </select>
-                                    </td>
-                
-                                    <td><label htmlFor="numSamples">Number of Samples: </label></td>
-                                    <td>
-                                    <input type="number" id="numSamples" name="numSamples" onChange={this.handleChange}
-                                    onFocus={this.selectNumSamples} value={this.state.numSamples} min="1" max="500" required />
-                                    </td>
-                
-                                    <td><label htmlFor="receiveDate">Date Received:</label></td>
-                                    <td>
-                                    <input type="date" id="receiveDate" name="receiveDate"
-                                    defaultValue={this.getCurrentDate()}
-                                    onChange={this.handleChange}/>
-                                    </td>
-                
-                                </tr>
-                                </tbody>
-                
-                                </table>
-                                </div>*/}
 
                 <input type="submit" id="create-grid-button" value="Create Grid" onClick={this.submitForm} />
             </form>

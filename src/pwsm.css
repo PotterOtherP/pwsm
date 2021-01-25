@@ -10,10 +10,12 @@
     margin-left: 0px;
 }
 
+
+
 .table-container{
     position: relative;
     z-index: 1;
-    overflow: auto;
+    /*overflow: auto;*/
     max-height: 500px;
 
 }
@@ -102,11 +104,11 @@ fieldset {
 
 .radioArea {
     width: 120px;
-    height: 60px;
+    height: 50px;
     border-radius: 15px;
     margin: 20px;
     text-align: center;
-    padding-top: 15px;
+    padding-top: 12px;
 
 }
 
@@ -124,7 +126,6 @@ fieldset {
     width: 66px;
     height: 53px;
 }
-
 
 .plantBG {
     background-color: #ffff99;

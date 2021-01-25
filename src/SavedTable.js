@@ -1,8 +1,15 @@
 import React from 'react';
+import {getStyledLabId} from './data.js';
 
 const SavedTable = (props) => {
 
+
+
     const rows = props.records.map((row, index) => {
+
+        let first = getStyledLabId(row.sampleType, row.firstLabId);
+        let sampleRange = (row.firstLabId < row.lastLabId)? (first + " - " + row.lastLabId)
+        : first;
 
         return(
 
@@ -10,7 +17,7 @@ const SavedTable = (props) => {
             <td>{row.styledReportNumber}</td>
             <td>{row.sampleType}</td>
             <td>{row.reportType}</td>
-            <td>{row.firstLabId} - {row.lastLabId}</td>
+            <td>{sampleRange}</td>
         </tr>
 
         );
