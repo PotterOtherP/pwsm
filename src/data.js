@@ -159,11 +159,11 @@ export function getStyledReportNumber(type, number) {
             default: break;
         }
 
-        if (number < 10) styledNumber += "00000";
-        else if (number < 100) styledNumber += "0000";
-        else if (number < 1000) styledNumber += "000";
-        else if (number < 1000) styledNumber += "00";
-        else if (number < 10000) styledNumber += "0";
+        // if (number < 10) styledNumber += "00000";
+        // else if (number < 100) styledNumber += "0000";
+        // else if (number < 1000) styledNumber += "000";
+        // else if (number < 1000) styledNumber += "00";
+        // else if (number < 10000) styledNumber += "0";
 
         styledNumber += number;
 

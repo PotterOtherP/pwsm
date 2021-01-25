@@ -10,7 +10,10 @@ import {plant_codes, waste_codes, solution_codes, media_codes,
         isSolidWaste, getStyledReportNumber} from './data.js';
 
 
-
+/**
+ *  Author: Nathan Tryon
+ *  Source: https://github.com/PotterOtherP/pwsm
+ */
 class App extends Component {
 
     componentDidMount() {
