@@ -14,11 +14,12 @@ const LabHeader = (props) => {
     if (props.reportData.sampleGrid.length > 0)
     return (
         <thead>
-            <tr>
-                <th>Report Type: {props.reportData.reportType} </th>
-                <th>{rNum}</th>
+            <tr className="tr-fixed">
+                <th>{rNum + " - " + props.reportData.reportType}</th>
                 <th>Samples: {sampleRange}</th>
+                <th></th>
                 <th><button id="saveButton" onClick={() => props.saveReport()}>Save Report</button></th>
+                <th></th>
                 <th><button id="clearButton" onClick={() => props.clearGrid()}>Clear Grid</button></th>
             </tr>
         </thead>

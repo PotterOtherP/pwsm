@@ -53,20 +53,25 @@ class Form extends Component {
 
             let type = event.target.value;
             let code = "";
+            let codeDiv = document.getElementById("codeColor");
 
             switch(type)
             {
                 case "Plant":
                     code = this.props.plantMenu[0];
+                    codeDiv.setAttribute("style", "background-color: #ffff99;");
                     break;
                 case "Waste":
                     code = this.props.wasteMenu[0];
+                    codeDiv.setAttribute("style", "background-color: #ffbf80;");
                     break;
                 case "Solution":
                     code = this.props.solutionMenu[0];
+                    codeDiv.setAttribute("style", "background-color: #99ddff;");
                     break;
                 case "Media":
                     code = this.props.mediaMenu[0];
+                    codeDiv.setAttribute("style", "background-color: #ffb3cc;");
                     break;
 
                 default: break;
@@ -94,9 +99,7 @@ class Form extends Component {
 
     
 
-    selectNumSamples = () => { document.getElementById("numSamples").select(); }
-    selectReportNumber = () => { document.getElementById("reportNumber").select(); }
-    selectFirstId = () => { document.getElementById("firstLabId").select(); }
+    selectNumSamples = () => { document.getElementById("numSamplesInput").select(); }
 
 
     submitForm = (event) => {
@@ -144,7 +147,7 @@ class Form extends Component {
 
                 <fieldset className="flex-row form-bottom-row">
 
-                    <label htmlFor="numSamples">{this.getCodePhrase(this.state.sampleType)}</label>
+                    <label id="codeColor">{this.getCodePhrase(this.state.sampleType)}</label>
                     <select name="sampleCode" id="codeSelect" onChange={this.handleChange} value={this.state.sampleCode} >
                         {this.props.dropDown.map( (code, index) => {
                             return (<option key={index} value={code}>{code}</option>);
