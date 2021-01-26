@@ -3,15 +3,12 @@
  */
 
  /**
- * Copies an array one level down. Probably not sufficient for a deep copy.
+ * Performs a deep copy of an object without complex types.
+ * Note to self: don't reinvent the wheel.
  */
-export function copyArray (arr) {
-    let result = [];
-
-    for (let item of arr)
-        result.push(item);
-
-    return result;
+export function copyObject (obj) {
+    
+    return JSON.parse(JSON.stringify(obj));
 }
 
 /**

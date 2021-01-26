@@ -1,13 +1,13 @@
 import React, {Component} from 'react';
 import Table from './Table';
-import SavedTable from './SavedTable';
+import Worklist from './Worklist';
 import Form from './Form';
 import {plant_codes, waste_codes, solution_codes, media_codes,
         default_plant_tests, default_waste_solid_tests, default_waste_liquid_tests, default_solution_tests, default_media_tests,
         extra_tests, saved_reports, saved_report_ids, saved_plant_report_numbers, saved_waste_report_numbers,
         saved_solution_report_numbers, saved_media_report_numbers, saved_plant_lab_ids, saved_waste_lab_ids,
         saved_solution_lab_ids, saved_media_lab_ids,
-        copyArray, isSolidWaste, getStyledReportNumber} from './data.js';
+        copyObject, isSolidWaste, getStyledReportNumber} from './data.js';
 
 
 /**
@@ -35,7 +35,7 @@ class App extends Component {
     initialState = {
 
         createDisplay: true,
-        savedDisplay: false,
+        worklistDisplay: false,
 
         sampleType: "Plant",
         formSampleType: "Plant",
@@ -175,7 +175,7 @@ class App extends Component {
                 reportNumber: this.getNextNumbers("Plant")[0],
                 firstLabId: this.getNextNumbers("Plant")[1],
                 createDisplay: true,
-                savedDisplay: false
+                worklistDisplay: false
             }
         })
     }
@@ -195,7 +195,7 @@ class App extends Component {
 
             return {
                 createDisplay: false,
-                savedDisplay: true
+                worklistDisplay: true
             }
         })
 
@@ -348,7 +348,7 @@ class App extends Component {
         let copy = Object.create(samples[index]);
         copy = Object.assign(copy, samples[index]);
 
-        copy.tests = copyArray(samples[index].tests);
+        copy.tests = copyObject(samples[index].tests);
 
         samples.splice(index, 0, copy);
 
@@ -405,7 +405,7 @@ class App extends Component {
                 styledReportNumber: newId,
                 sampleType: this.state.sampleType,
                 reportType: this.state.reportType,
-                sampleGrid: this.state.sampleGrid,
+                sampleGrid: copyObject(this.state.sampleGrid),
                 firstLabId: this.state.firstLabId,
                 lastLabId: this.state.firstLabId + this.state.sampleGrid.length - 1
 
@@ -420,6 +420,7 @@ class App extends Component {
             {
                 window.alert("Saving report " + newId + ".");
                 saved_reports.push(newReport);
+                
                 saved_report_ids.push(newId);
                 this.clearGrid();
                 
@@ -556,12 +557,12 @@ class App extends Component {
             );
         }
 
-        else if (this.state.savedDisplay)
+        else if (this.state.worklistDisplay)
         {
             return (
                 <div className="container">
                     <button id="displayCreateScreen" onClick={() => this.displayCreate()}>Create New Report</button>
-                    <SavedTable
+                    <Worklist
                         records={saved_reports}
 
                     />
