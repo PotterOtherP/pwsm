@@ -7,7 +7,7 @@ import {plant_codes, waste_codes, solution_codes, media_codes,
         extra_tests, saved_reports, saved_report_ids, saved_plant_report_numbers, saved_waste_report_numbers,
         saved_solution_report_numbers, saved_media_report_numbers, saved_plant_lab_ids, saved_waste_lab_ids,
         saved_solution_lab_ids, saved_media_lab_ids,
-        isSolidWaste, getStyledReportNumber} from './data.js';
+        copyArray, isSolidWaste, getStyledReportNumber} from './data.js';
 
 
 /**
@@ -261,6 +261,44 @@ class App extends Component {
     }
 
     /**
+     *  Returns an array of all initially assigned tests to a particular sample code.
+     */
+    getTests = (type, code) => {
+        let result_array = [];
+
+        switch(type)
+        {
+            case "Plant":
+                result_array = default_plant_tests;
+                break;
+            case "Solution":
+                result_array = default_solution_tests;
+                break;
+            case "Media":
+                result_array = default_media_tests;
+                break;
+            case "Waste":
+                if (isSolidWaste(code))
+                    result_array = default_waste_solid_tests;
+                else
+                    result_array = default_waste_liquid_tests;
+                break;
+
+            default: break;
+        }
+
+        if (extra_tests.hasOwnProperty(code))
+            result_array = result_array.concat(extra_tests[code]);
+
+
+        let result_copy = [];
+        for (let item of result_array)
+            result_copy.push(item);
+
+        return result_copy;
+    }
+
+    /**
      * When the form is submitted with the Create Report button,
      * this function is called to transmit the form data to the
      * App state.
@@ -289,7 +327,7 @@ class App extends Component {
                 samples.push({
                     sampleId: Number.parseInt(this.state.firstLabId) + i,
                     code: reportInfo.sampleCode,
-                    tests: getTests(reportInfo.sampleType, reportInfo.sampleCode),
+                    tests: this.getTests(reportInfo.sampleType, reportInfo.sampleCode),
                     comment: ""});
             }
 
@@ -345,7 +383,6 @@ class App extends Component {
 
         this.adjustGridIdNumbers();
     }
-
 
     /**
      * Saves a report to the storage array.
@@ -430,7 +467,8 @@ class App extends Component {
     }
 
     /**
-     *
+     * Set the report type in the app state when it's changed in the form
+     * (without submitting the form);
      */
     setReportType = (type) => {
         this.setState(state => {
@@ -438,16 +476,22 @@ class App extends Component {
         });
     }
 
+    /**
+     * Set the sample code of an individual row in the sample grid.
+     */
     setSampleCode = (key, newCode) => {
         this.setState(state => {
 
             let samples = state.sampleGrid;
             samples[key].code = newCode;
-            samples[key].tests = getTests(state.sampleType, newCode);
+            samples[key].tests = this.getTests(state.sampleType, newCode);
             return { sampleGrid: samples };
         });
     };
 
+    /**
+     * Set the sample type that's displayed in the form (not affecting the sample grid).
+     */
     setFormSampleType = (type) => {
         this.setState(state => {
         
@@ -468,6 +512,9 @@ class App extends Component {
         });
     };
 
+    /**
+     * Render either the report creation screen or the worklist/edit report screen.
+     */
     render() {
 
         if (this.state.createDisplay)
@@ -525,51 +572,9 @@ class App extends Component {
 }
 
 
-function copyArray(arr)
-{
-    let result = [];
-
-    for (let item of arr)
-        result.push(item);
-
-    return result;
-}
-
-function getTests(type, code)
-{
-    let result_array = [];
-
-    switch(type)
-    {
-        case "Plant":
-            result_array = default_plant_tests;
-            break;
-        case "Solution":
-            result_array = default_solution_tests;
-            break;
-        case "Media":
-            result_array = default_media_tests;
-            break;
-        case "Waste":
-            if (isSolidWaste(code))
-                result_array = default_waste_solid_tests;
-            else
-                result_array = default_waste_liquid_tests;
-            break;
-
-        default: break;
-    }
-
-    if (extra_tests.hasOwnProperty(code))
-        result_array = result_array.concat(extra_tests[code]);
 
 
-    let result_copy = [];
-    for (let item of result_array)
-        result_copy.push(item);
 
-    return result_copy;
-}
 
 
 export default App

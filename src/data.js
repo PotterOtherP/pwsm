@@ -2,6 +2,18 @@
  * This file contains data and functions used by multiple classes.
  */
 
+ /**
+ * Copies an array one level down. Probably not sufficient for a deep copy.
+ */
+export function copyArray (arr) {
+    let result = [];
+
+    for (let item of arr)
+        result.push(item);
+
+    return result;
+}
+
 /**
  * Returns true if a waste sample is a solid type, false if liquid.
  * Used to determine which default tests are assigned.

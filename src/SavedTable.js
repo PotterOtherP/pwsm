@@ -13,7 +13,7 @@ const SavedTable = (props) => {
 
         return(
 
-        <tr key={index}>
+        <tr key={index} onClick={() => {console.log(index);}}>
             <td>{row.styledReportNumber}</td>
             <td>{row.sampleType}</td>
             <td>{row.reportType}</td>
