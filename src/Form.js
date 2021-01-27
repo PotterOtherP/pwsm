@@ -156,7 +156,7 @@ class Form extends Component {
 
                     <label htmlFor="numSamples">Number of Samples:</label>
                     <input type="number" id="numSamplesInput" name="numSamples" onChange={this.handleChange}
-                    onFocus={this.selectNumSamples} value={this.state.numSamples} min="1" max="500" required />
+                    onFocus={this.selectNumSamples} value={this.state.numSamples} min="1" max="200" required />
 
                     <label htmlFor="receiveDate">Date Received:</label>
                     <input type="date" id="receiveDateInput" name="receiveDate"

@@ -217,7 +217,7 @@ export const solution_codes = [
     "AO - Other Aquaculture",
     "FP - Fish Production/Recreation",
     "QG - Ground Water",
-    "QH - Household (nonpotable",
+    "QH - Household (nonpotable)",
     "QS - Surface Water",
     "QO - Other Water",
     "NS - General Nutrient Solution",

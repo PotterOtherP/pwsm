@@ -134,9 +134,16 @@ select {
 }
 
 .worklist-report-row {
-  background-color: #e8e8e8;
-  border-bottom: 2px solid #111;
-  font-weight: bold;
+    background-color: #e8e8e8;
+    border-bottom: 2px solid #111;
+    font-weight: bold;
+
+}
+
+.worklist-test-row {
+    background-color: #e8e8e8;
+    font-weight: bold;
+    display: none;
 
 }
 

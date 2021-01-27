@@ -24,15 +24,22 @@ const ReportRows = (props) => {
 
 
         let samples = document.getElementsByClassName(classname);
+        let test = document.getElementById(classname);
 
         let visible = samples[0].getAttribute("style") === ("display: table-row");
 
         for (let sample of samples)
         {
             if (visible)
+            {
                 sample.setAttribute("style", "display: none");
+                test.setAttribute("style", "display: none");
+            }
             else
+            {
                 sample.setAttribute("style", "display: table-row");
+                test.setAttribute("style", "display: table-row");
+            }
 
         }
     }
@@ -54,11 +61,21 @@ const ReportRows = (props) => {
                 <td title="Expand/Collapse Report" style={{"cursor": "default"}}>☰</td>
                 <td>{row.styledReportNumber + " - " + row.reportType}</td>
                 <td>{sampleRange}</td>
-                <ReportRowTestSection tests={testArray} />
+                <td></td><td></td><td></td><td></td>
+                <td></td><td></td><td></td><td></td>
+                <td></td><td></td><td></td><td></td>
                 <td>Comment</td>
                 </tr>
 
-                <WorklistSampleRow samples={row.sampleGrid} type={row.sampleType} reportId={row.styledReportNumber} testArray={testArray}/>                
+                <tr key={index + "trtests"} id={"worklist-sample-row" + row.styledReportNumber} className="worklist-test-row">
+                <td></td>
+                <td></td>
+                <td></td>
+                <ReportRowTestSection tests={testArray} />
+                <td></td>
+                </tr>
+
+                <WorklistSampleRows samples={row.sampleGrid} type={row.sampleType} reportId={row.styledReportNumber} testArray={testArray}/>                
         </tbody>
         );
 
@@ -66,7 +83,7 @@ const ReportRows = (props) => {
 
 }
 
-const WorklistSampleRow = (props) => {
+const WorklistSampleRows = (props) => {
 
     return props.samples.map((sample, sampleIndex) => {
 
