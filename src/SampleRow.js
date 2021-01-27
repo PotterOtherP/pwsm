@@ -13,9 +13,9 @@ const TestEditForm = (props) => {
         <form id={props.id + "testEditForm"} style={{display: "none",}} >
         <div className="testEditForm">
         {
-            props.testArray.map( (test) => {
-                return(<div key={test} className="testCheckbox">
-                        <input type="checkbox"  id={props.id + test} name={test} value={test}
+            props.testArray.map( (test, index) => {
+                return(<div key={test + index} className="testCheckbox">
+                        <input type="checkbox"  id={props.id + test + index} name={test} value={test}
                         defaultChecked={props.assignedTests.includes(test)? true: false}
                         onChange={(event) => props.assignTest(props.id, test, event.target.checked)}></input>
                         <label htmlFor={props.id + test}>{test}</label>

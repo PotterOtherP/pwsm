@@ -521,12 +521,18 @@ class App extends Component {
 
         if (this.state.createDisplay)
         {
+            let totalSamples = 0;
+            for (let report of saved_reports)
+            {
+                totalSamples += report.sampleGrid.length;
+            }
+
             return (
             <div className="container">
             <header>
             <h3>PWSM Receiving</h3>
                 <button id="displaySavedButton"
-                    onClick={() => this.displayReports()}>{"Show Saved Reports (" + saved_report_ids.length + ")"}
+                    onClick={() => this.displayReports()}>{"View Worklist (" + totalSamples + ")"}
                 </button>
             </header>
                 <Form

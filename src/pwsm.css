@@ -129,6 +129,21 @@ select {
     background-color: #fff;
 }
 
+.worklist-header {
+    border-bottom: 2px solid black;
+}
+
+.worklist-report-row {
+  background-color: #e8e8e8;
+  border-bottom: 2px solid #111;
+  font-weight: bold;
+
+}
+
+.worklist-sample-row {
+    display: none;
+}
+
 .plantBG {
     background-color: #ffff99;
     border: 1px solid #333;
