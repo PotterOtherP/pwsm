@@ -58,6 +58,7 @@ select {
 
 .flex-row {
     margin: 0px;
+    flex-wrap: nowrap;
 }
 
 .form-bottom-row {

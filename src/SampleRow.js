@@ -2,7 +2,7 @@ import React from 'react';
 import {all_plant_tests, all_waste_tests, all_solution_tests, all_media_tests,
         default_plant_tests, default_waste_liquid_tests, default_waste_solid_tests,
         default_solution_tests, default_media_tests,
-        isSolidWaste, getStyledLabId} from './data.js';
+        isSolidWaste, getAllTests, getStyledLabId} from './data.js';
 
 
 
@@ -28,14 +28,6 @@ const TestEditForm = (props) => {
         </form>
 
     );
-}
-
-const getTestArray = (type) => {
-
-    if (type === "Plant") return all_plant_tests;
-    if (type === "Waste") return all_waste_tests;
-    if (type === "Solution") return all_solution_tests;
-    if (type === "Media") return all_media_tests;
 }
 
 
@@ -94,10 +86,10 @@ const SampleRow = (props) => {
             }).join(" ")}
 
 
-                <button id="testEdit" className="editTests" title="Edit Tests" onClick={() => toggleTestEditForm(props.sampleId, getTestArray(props.type), props.tests)} >
+                <button id="testEdit" className="editTests" title="Edit Tests" onClick={() => toggleTestEditForm(props.sampleId, getAllTests(props.type), props.tests)} >
                 <img src="https://s2.svgbox.net/materialui.svg?ic=edit&color=fff" alt=""/>
                 </button>
-                <TestEditForm id={props.sampleId} testArray={getTestArray(props.type)} assignedTests={props.tests} assignTest={props.assignTest}/>
+                <TestEditForm id={props.sampleId} testArray={getAllTests(props.type)} assignedTests={props.tests} assignTest={props.assignTest}/>
 
             </td>
 

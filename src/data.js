@@ -20,6 +20,17 @@ export function isSolidWaste(code) {
 }
 
 /**
+ * Returns the array of all possible tests for a given sample type.
+ */
+export function getAllTests(type) {
+
+    if (type === "Plant") return all_plant_tests;
+    if (type === "Waste") return all_waste_tests;
+    if (type === "Solution") return all_solution_tests;
+    if (type === "Media") return all_media_tests;
+}
+
+/**
  * Returns a formatted lab ID number with the appropriate letter in front.
  */
 export function getStyledLabId(type, number) {
