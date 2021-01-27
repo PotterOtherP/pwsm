@@ -258,10 +258,10 @@ export const media_codes = [
 ];
 
 /** All possible tests that can be assigned to each type, used in the checkbox menus and the worklist. */
-export const all_plant_tests = [ "Biomass", "C", "Cl", "DW", "HM", "HM-All", "ICP", "Mo", "N", "NO3", "", ""];
+export const all_plant_tests = [ "Biomass", "C", "Cl", "Co", "DW", "HM", "HM-All", "ICP", "Li", "Mo", "N", "NO3"];
 export const all_waste_tests = [ "C", "CCE%", "DM%", "EC", "HM", "HM-All", "ICP", "Mo", "N", "NH4/NO3", "pH", "TKN"];
-export const all_solution_tests = [ "CBC", "Cl", "EC", "HM", "HM-All", "ICP", "Mo", "NH4/NO3", "pH", "Urea", "", "" ];
-export const all_media_tests = [ "Bulk Density", "Cl", "EC", "ICP", "Mo", "NH4/NO3", "pH", "Urea", "", "", "", "" ];
+export const all_solution_tests = [ "CBC", "Cl", "Co", "EC", "HM", "HM-All", "ICP", "Li", "Mo", "NH4/NO3", "pH", "Urea"];
+export const all_media_tests = [ "Bulk Density", "Cl", "Co", "EC", "HM", "HM-All", "ICP", "Li", "Mo", "NH4/NO3", "pH", "Urea"];
 
 
 /** Default tests assigned to every sample of a particular type. */

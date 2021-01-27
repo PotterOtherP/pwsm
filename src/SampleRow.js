@@ -1,6 +1,5 @@
 import React from 'react';
-import {all_plant_tests, all_waste_tests, all_solution_tests, all_media_tests,
-        default_plant_tests, default_waste_liquid_tests, default_waste_solid_tests,
+import {default_plant_tests, default_waste_liquid_tests, default_waste_solid_tests,
         default_solution_tests, default_media_tests,
         isSolidWaste, getAllTests, getStyledLabId} from './data.js';
 
@@ -15,7 +14,7 @@ const TestEditForm = (props) => {
         {
             props.testArray.map( (test, index) => {
                 return(<div key={test + index} className="testCheckbox">
-                        <input type="checkbox"  id={props.id + test + index} name={test} value={test}
+                        <input type="checkbox"  id={props.id + test} name={test} value={test}
                         defaultChecked={props.assignedTests.includes(test)? true: false}
                         onChange={(event) => props.assignTest(props.id, test, event.target.checked)}></input>
                         <label htmlFor={props.id + test}>{test}</label>

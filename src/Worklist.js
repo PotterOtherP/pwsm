@@ -5,10 +5,6 @@ import {all_plant_tests, all_waste_tests, all_solution_tests, all_media_tests,
 
 const Worklist = (props) => {
 
-    console.log(all_plant_tests.length);
-    console.log(all_waste_tests.length);
-    console.log(all_solution_tests.length);
-    console.log(all_media_tests.length);
 
     return (
 
@@ -48,9 +44,9 @@ const ReportRows = (props) => {
         : first;
 
         let testArray = all_plant_tests;
-        if (row.reportType === "Waste") testArray = all_waste_tests;
-        if (row.reportType === "Solution") testArray = all_solution_tests;
-        if (row.reportType === "Meda") testArray = all_media_tests;
+        if (row.sampleType === "Waste") testArray = all_waste_tests;
+        if (row.sampleType === "Solution") testArray = all_solution_tests;
+        if (row.sampleType === "Media") testArray = all_media_tests;
 
         return(
         <tbody key={index + "tbody"}>
