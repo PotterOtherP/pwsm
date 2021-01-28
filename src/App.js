@@ -13,6 +13,9 @@ import {plant_codes, waste_codes, solution_codes, media_codes,
 /**
  *  Author: Nathan Tryon
  *  Source: https://github.com/PotterOtherP/pwsm
+ *  This app simulates the receiving screen of the PWSM lab,
+ *  allowing the user to create reports and generate a worklist showing
+ *  all samples with their assigned lab tests and user-added comments.
  */
 class App extends Component {
 

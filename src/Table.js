@@ -3,7 +3,10 @@ import SampleRow from './SampleRow';
 import {getStyledReportNumber, getStyledLabId} from './data.js';
 
 
-
+/**
+ * A component for the first row of the table, displaying report information: report type,
+ * report number and sample range (which are automatically calculated )
+ */
 const LabHeader = (props) => {
 
     const rNum = getStyledReportNumber(props.reportData.sampleType, props.reportData.reportNumber);
@@ -40,6 +43,9 @@ const LabHeader = (props) => {
 
 };
 
+/**
+ * The header for the grid of samples - doesn't change
+ */
 const TableHeader = () => {
     return (
         <thead>
@@ -55,7 +61,9 @@ const TableHeader = () => {
     );
 }
 
-
+/**
+ * The component for the grid of sample rows.
+ */
 const TableBody = (props) => {
 
     const rows = props.reportData.sampleGrid.map((row, index) => {
@@ -83,6 +91,9 @@ const TableBody = (props) => {
     );
 }
 
+/**
+ * The table of samples that is generated from the "Create Report" button.
+ */
 const Table = (props) => {
 
     // const {reportData, removeSample} = props;

@@ -4,7 +4,10 @@ import {default_plant_tests, default_waste_liquid_tests, default_waste_solid_tes
         isSolidWaste, getAllTests, getStyledLabId} from './data.js';
 
 
-
+/**
+ *  A component for the test edit menu on each sample row.
+ *  Consists of a grid of checkboxes. 
+ */
 const TestEditForm = (props) => {
 
     return (
@@ -30,7 +33,10 @@ const TestEditForm = (props) => {
 }
 
 
-
+/**
+ * Each time the menu is opened or closed, the checkboxes are updated to
+ * ensure they reflect the actual array of tests assigned to the sample.
+ */
 const refreshCheckBoxes = (id, testArray, assignedTests) => {
 
     for (let test of testArray)
@@ -43,6 +49,9 @@ const refreshCheckBoxes = (id, testArray, assignedTests) => {
     }
 }
 
+/**
+ * Controls the visibility of the test edit checkbox form.
+ */
 const toggleTestEditForm = (id, testArray, assignedTests) =>
 {
     refreshCheckBoxes(id, testArray, assignedTests);
@@ -58,6 +67,10 @@ const toggleTestEditForm = (id, testArray, assignedTests) =>
     document.getElementById(formId).setAttribute("style", val);
 }
 
+
+/**
+ * A component for each row of the sample grid table that appears on the "Create Report" page.
+ */
 const SampleRow = (props) => {
 
 

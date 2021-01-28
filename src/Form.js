@@ -1,5 +1,9 @@
 import React, {Component} from 'react';
 
+/**
+ * This component contains the fields modified by the user to create a report:
+ * sample type, report type, sample code/crop name, number of samples, and date received.
+ */
 class Form extends Component {
 
     componentDidMount() {
@@ -21,7 +25,9 @@ class Form extends Component {
     state = this.initialState;
 
 
-
+    /**
+     * Returns a string YYYY-MM-DD with the current date in the local time zone.
+     */
     getCurrentDate = () => {
 
         const date = new Date();
@@ -33,6 +39,9 @@ class Form extends Component {
         return (year + "-" + month + "-" + day);
     }
 
+    /**
+     * Sets the Form component state when a field value is changed.
+     */
     handleChange = (event) => {
 
         this.setState(state => {
@@ -45,6 +54,12 @@ class Form extends Component {
 
     }
 
+    /**
+     * When the sample type is changed, it is passed up to the App state.
+     * The grid is cleared and the drop-down is updated. There is also
+     * a color-coded area next to the drop-down to make the change more
+     * noticeable.
+     */
     handleSampleTypeChange = (event) => {
 
         this.props.clearGrid();
@@ -84,6 +99,10 @@ class Form extends Component {
 
     }
 
+    /**
+     * Just so we can have say that a crop has a "name"
+     * and other types of samples have a "code".
+     */
     getCodePhrase = (type) => {
 
         switch(type)
@@ -96,12 +115,15 @@ class Form extends Component {
         }
     }
         
-
-    
-
+    /**
+     * A function to help highlight the "Number of Samples" field when it gets focus.
+     */
     selectNumSamples = () => { document.getElementById("numSamplesInput").select(); }
 
 
+    /**
+     * Called when the "Create Grid" button is clicked.
+     */
     submitForm = (event) => {
         event.preventDefault();
         this.props.handleSubmit(this.state);

@@ -2,7 +2,10 @@ import React from 'react';
 import {all_plant_tests, all_waste_tests, all_solution_tests, all_media_tests,
     getStyledLabId} from './data.js';
 
-
+/**
+ * The worklist is one large table with expandable rows for each report. Expanding a report
+ * row will reveal all of it samples and their assigned tests.
+ */
 const Worklist = (props) => {
 
 
@@ -18,8 +21,15 @@ const Worklist = (props) => {
         );
 }
 
+/**
+ * The component that generates the report rows, including a row with all relevant tests
+ * and a row for each sample in the report. Only the report row is visible initially.
+ */
 const ReportRows = (props) => {
 
+    /**
+     * This function is triggered when the report row is clicked.
+     */
     const toggleSamples = (classname) => {
 
 
@@ -83,6 +93,9 @@ const ReportRows = (props) => {
 
 }
 
+/**
+ * A component for the sample rows in a particular report.
+ */
 const WorklistSampleRows = (props) => {
 
     return props.samples.map((sample, sampleIndex) => {
@@ -99,6 +112,9 @@ const WorklistSampleRows = (props) => {
     });
 }
 
+/**
+ * Creates the <td> elements for each test
+ */
 const ReportRowTestSection = (props) => {
 
     return props.tests.map((test, index) => {
@@ -107,6 +123,9 @@ const ReportRowTestSection = (props) => {
     });
 }
 
+/**
+ * Prints an "O" for each test assigned to the sample. Tests not assigned are left blank.
+ */
 const SampleRowTestSection = (props) => {
 
     return props.allTests.map((test, index) => {
