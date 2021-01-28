@@ -186,7 +186,7 @@ select {
 }
 
 .plantBG:hover, .wasteBG:hover, .solutionBG:hover, .mediaBG:hover, .reportTypeBG:hover,
-.duplicate:hover, .delete:hover, .edit-test-button:hover {
+.duplicate:hover, .delete:hover {
     border: 3px solid #333;
 }
 
