@@ -98,7 +98,7 @@ const SampleRow = (props) => {
             }).join(" ")}
 
 
-                <button id="testEdit" className="editTests" title="Edit Tests" onClick={() => toggleTestEditForm(props.sampleId, getAllTests(props.type), props.tests)} >
+                <button id="testEdit" className="edit-test-button" title="Edit Tests" onClick={() => toggleTestEditForm(props.sampleId, getAllTests(props.type), props.tests)} >
                 <img src="https://s2.svgbox.net/materialui.svg?ic=edit&color=fff" alt=""/>
                 </button>
                 <TestEditForm id={props.sampleId} testArray={getAllTests(props.type)} assignedTests={props.tests} assignTest={props.assignTest}/>

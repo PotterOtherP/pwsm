@@ -69,12 +69,12 @@ const ReportRows = (props) => {
         <tbody key={index + "tbody"}>
                 <tr key={index + "tr"} className="worklist-report-row" onClick={() => toggleSamples("worklist-sample-row" + row.styledReportNumber)}>
                 <td title="Expand/Collapse Report" style={{"cursor": "default"}}>☰</td>
-                <td>{row.styledReportNumber + " - " + row.reportType}</td>
-                <td>{sampleRange}</td>
+                <td>{row.styledReportNumber}</td>
+                <td>{"Samples: " + sampleRange}</td>
                 <td></td><td></td><td></td><td></td>
                 <td></td><td></td><td></td><td></td>
                 <td></td><td></td><td></td><td></td>
-                <td>Comment</td>
+                <td>{row.reportType}</td>
                 </tr>
 
                 <tr key={index + "trtests"} id={"worklist-sample-row" + row.styledReportNumber} className="worklist-test-row">
@@ -82,7 +82,7 @@ const ReportRows = (props) => {
                 <td></td>
                 <td></td>
                 <ReportRowTestSection tests={testArray} />
-                <td></td>
+                <td>Comment</td>
                 </tr>
 
                 <WorklistSampleRows samples={row.sampleGrid} type={row.sampleType} reportId={row.styledReportNumber} testArray={testArray}/>                

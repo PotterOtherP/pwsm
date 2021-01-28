@@ -56,6 +56,10 @@ select {
     font-size: 30px;
 }
 
+.edit-test-button, .edit-test-button:hover, .edit-test-button:focus {
+    background-color: #d35400;
+}
+
 .flex-row {
     margin: 0px;
     flex-wrap: nowrap;
@@ -182,7 +186,7 @@ select {
 }
 
 .plantBG:hover, .wasteBG:hover, .solutionBG:hover, .mediaBG:hover, .reportTypeBG:hover,
-.duplicate:hover, .delete:hover {
+.duplicate:hover, .delete:hover, .edit-test-button:hover {
     border: 3px solid #333;
 }
 
@@ -298,3 +302,46 @@ select {
 {color:#000;background-color:#E6AF91}
 .w3-2020-magenta-purple
 {color:#fff;background-color:#6C244C}
+.w3-amber,
+{color:#000;background-color:#ffc107}
+
+.w3-flat-turquoise
+{color:#fff;background-color:#1abc9c}
+.w3-flat-emerald
+{color:#fff;background-color:#2ecc71}
+.w3-flat-peter-river
+{color:#fff;background-color:#3498db}
+.w3-flat-amethyst
+{color:#fff;background-color:#9b59b6}
+.w3-flat-wet-asphalt
+{color:#fff;background-color:#34495e}
+.w3-flat-green-sea
+{color:#fff;background-color:#16a085}
+.w3-flat-nephritis
+{color:#fff;background-color:#27ae60}
+.w3-flat-belize-hole
+{color:#fff;background-color:#2980b9}
+.w3-flat-wisteria
+{color:#fff;background-color:#8e44ad}
+.w3-flat-midnight-blue
+{color:#fff;background-color:#2c3e50}
+.w3-flat-sun-flower
+{color:#fff;background-color:#f1c40f}
+.w3-flat-carrot
+{color:#fff;background-color:#e67e22}
+.w3-flat-alizarin
+{color:#fff;background-color:#e74c3c}
+.w3-flat-clouds
+{color:#000;background-color:#ecf0f1}
+.w3-flat-concrete
+{color:#fff;background-color:#95a5a6}
+.w3-flat-orange
+{color:#fff;background-color:#f39c12}
+.w3-flat-pumpkin
+{color:#fff;background-color:#d35400}
+.w3-flat-pomegranate
+{color:#fff;background-color:#c0392b}
+.w3-flat-silver
+{color:#000;background-color:#bdc3c7}
+.w3-flat-asbestos
+{color:#fff;background-color:#7f8c8d}
