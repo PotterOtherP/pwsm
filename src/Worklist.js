@@ -36,7 +36,7 @@ const ReportRows = (props) => {
         let samples = document.getElementsByClassName(classname);
         let test = document.getElementById(classname);
 
-        let visible = samples[0].getAttribute("style") === ("display: table-row");
+        let visible = samples[0].getAttribute("style") !== ("display: none");
 
         for (let sample of samples)
         {
@@ -71,16 +71,12 @@ const ReportRows = (props) => {
                 <td title="Expand/Collapse Report" style={{"cursor": "default"}}>☰</td>
                 <td>{row.styledReportNumber}</td>
                 <td>{"Samples: " + sampleRange}</td>
-                <td></td><td></td><td></td><td></td>
-                <td></td><td></td><td></td><td></td>
-                <td></td><td></td><td></td><td></td>
+                <td colspan="9"></td>
                 <td>{row.reportType}</td>
                 </tr>
 
                 <tr key={index + "trtests"} id={"worklist-sample-row" + row.styledReportNumber} className="worklist-test-row">
-                <td></td>
-                <td></td>
-                <td></td>
+                <td colspan="3"></td>
                 <ReportRowTestSection tests={testArray} />
                 <td>Comment</td>
                 </tr>

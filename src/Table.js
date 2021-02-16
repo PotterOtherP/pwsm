@@ -15,20 +15,23 @@ const LabHeader = (props) => {
         : lNum;
 
     if (props.reportData.sampleGrid.length > 0)
-    return (
-        <thead>
-            <tr className="tr-fixed">
-                <th>{rNum + " - " + props.reportData.reportType}</th>
-                <th>Samples: {sampleRange}</th>
-                <th></th>
-                <th><button id="saveButton" onClick={() => props.saveReport()}>Save Report</button></th>
-                <th></th>
-                <th><button id="clearButton" onClick={() => props.clearGrid()}>Clear Grid</button></th>
-            </tr>
-        </thead>
-    );
+    {
+        return (
+            <thead>
+                <tr className="tr-fixed">
+                    <th>{rNum + " - " + props.reportData.reportType}</th>
+                    <th>Samples: {sampleRange}</th>
+                    <th></th>
+                    <th><button id="saveButton" onClick={() => props.saveReport()}>Save Report</button></th>
+                    <th></th>
+                    <th><button id="clearButton" onClick={() => props.clearGrid()}>Clear Grid</button></th>
+                </tr>
+            </thead>
+        );
+    }
 
     else
+    {
         return (
         <thead>
             <tr>
@@ -39,7 +42,8 @@ const LabHeader = (props) => {
                 <th></th>
             </tr>
         </thead>
-    );
+        );
+    }
 
 };
 

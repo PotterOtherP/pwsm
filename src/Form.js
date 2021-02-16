@@ -163,8 +163,6 @@ class Form extends Component {
                     <input type="radio" id="internal" name="reportType" value="Internal" />
                     <label htmlFor="internal"> <div className="radioArea reportTypeBG">Internal</div></label>
 
-                    <input type="radio" id="out-of-state" name="reportType" value="Out of State" />
-                    <label htmlFor="out-of-state"> <div className="radioArea reportTypeBG">Out of State</div></label>
                 </fieldset>
 
                 <fieldset className="flex-row form-bottom-row">

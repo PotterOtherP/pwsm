@@ -78,9 +78,6 @@ export function getStyledReportNumber(type, number) {
 /** All plant codes */
 export const plant_codes = [
 
-    "Acacia",
-    "Ailanthus",
-    "Alfalfa",
     "Apple",
     "Apricot",
     "Arugula",
@@ -89,14 +86,10 @@ export const plant_codes = [
     "Basil",
     "Beans",
     "Beets",
-    "Bentgrass",
-    "Bermudagrass",
     "Blackberry",
     "Blueberry",
     "Broccoli",
-    "Brussels sprouts",
     "Cabbage",
-    "Canola",
     "Cantaloupe",
     "Carinata",
     "Carrot",
@@ -115,22 +108,16 @@ export const plant_codes = [
     "Dogwood",
     "Elm",
     "Fennel",
-    "Fescue",
     "Fig",
     "Fir, Fraser",
     "Garlic",
-    "GH Hemp",
-    "GH Strawberry",
-    "GH Tomato",
     "Grape, Muscadine",
     "Grape, Vinifera",
-    "Hemp, Field",
     "Honeydew",
     "Kale",
     "Kohlrabi",
     "Lettuce",
     "Maple",
-    "Miscellaneous",
     "Oak",
     "Oats",
     "Okra",
@@ -158,7 +145,6 @@ export const plant_codes = [
     "Sweet potato",
     "Tobacco",
     "Tomato",
-    "Turfgrass",
     "Turnip",
     "Watermelon",
     "Wheat",
@@ -170,22 +156,14 @@ export const plant_codes = [
 export const waste_codes_liquid = [
 
     "ALS - Swine Lagoon Liquid",
-    "ALF - Swine Farrow to Wean",
     "ALP - Poultry Lagoon Liquid",
-    "ALO - Other Lagoon Liquid",
-    "ASP - Poultry Lagoon Sludge",
-    "ASS - Swine Lagoon Sludge",
-    "ASO - Other Lagoon Sludge",
     "BID - Domestic septage",
-    "BLL - Leachates/effluents or reclaimed water",
     "GTL - Grease trap water",
     "LSB - Beef Slurry",
     "LSD - Dairy Slurry",
     "LSS - Swine Slurry",
-    "LSO - Other Slurry",
     "NLF - Food/beverage by-products (liquid)",
-    "NLA - Animal by-products (liquid)",
-    "NLO - Non-composted liquid, other",
+    "NLO - Non-composted liquid",
 
 ];
 
@@ -193,40 +171,24 @@ export const waste_codes_liquid = [
 export const waste_codes_solid = [
 
     "BCO - Biosolids, composted",
-    "BIO - Biosolids, other",
     "BIX - Biosolids, mixed",
     "CSW - Wood ash",
     "CSC - Coal ash",
-    "CSB - Biochar",
-    "CSO - Ash, mixed or other",
-    "FCB - Composted manure - Beef",
     "FCD - Composted manure - Dairy",
-    "FCH - Composted manure - Horse",
     "FCP - Composted manure - Poultry",
     "FCS - Composted manure - Swine",
-    "FCO - Composted manure - Other",
-    "FPM - Compost, poultry mortality",
-    "FSM - Compost, swine mortality",
     "FCW - Compost, plant material",
-    "FCX - Compost, mixed materials",
     "FCV - Vermicompost",
-    "HBB - Broiler breeder litter",
-    "HBP - Broiler pullet litter",
-    "HLB - Broiler litter",
-    "HLL - Layer litter",
+    "HLL - Chicken litter",
     "HLT - Turkey litter",
     "IOC - Paper fiber/pulp",
     "IOL - Lime by-products",
     "NBS - Wood waste/sawdust",
     "NCR - Raw plant material/crop residues",
     "NSF - Food/beverage by-products (solid)",
-    "NSA - Animal by-products (solid)",
-    "NSO - Non-composted solid, other",
-    "SSB - Beef Surface Scraped/Stockpiled",
+    "NSO - Non-composted solid",
     "SSD - Dairy Surface Scraped/Stockpiled",
-    "SSH - Horse Surface Scraped/Stockpiled",
     "SSS - Swine Surface Scraped/Stockpiled",
-    "SSO - Other Surface Scraped/Stockpiled",
 
 ];
 
@@ -241,34 +203,25 @@ export const solution_codes = [
 
     "AS - Source Water",
     "AP - Pond Water",
-    "AO - Other Aquaculture",
     "FP - Fish Production/Recreation",
     "QG - Ground Water",
-    "QH - Household (nonpotable)",
     "QS - Surface Water",
-    "QO - Other Water",
     "NS - General Nutrient Solution",
     "NT - Tobacco Nutrient Solution",
-    "NL - Pour-thru Leachate",
-    "NO - Other Nutrient Solution",
     "LC - Cattle Water",
     "LH - Horse Water",
     "LS - Swine Water",
-    "LO - Other Livestock Water",
     "IW - General Irrigation",
     "IO - Overhead Irrigation",
     "IT - Trickle Irrigation",
     "HT - Hydroponic Tomato",
     "HC - Hydroponic Cucumber",
     "HL - Hydroponic Lettuce",
-    "HH - Hydroponic Herb",
-    "HH - Other Hydroponic",
     "SP - Pesticide Solution",
     "SH - Hydroponic Nutrient",
     "SF - Floriculture Production",
     "ST - Tobacco Transplant Production",
     "SV - Vegetable Transplant Production",
-    "SO - Other Solution Source"
 
 ];
 
@@ -285,23 +238,67 @@ export const media_codes = [
 ];
 
 /** All possible tests that can be assigned to each type, used in the checkbox menus and the worklist. */
-export const all_plant_tests = [ "Biomass", "C", "Cl", "Co", "DW", "HM", "HM-All", "ICP", "Li", "Mo", "N", "NO3"];
-export const all_waste_tests = [ "C", "CCE", "DM", "EC", "HM", "HM-All", "ICP", "Mo", "N", "NH4/NO3", "pH", "TKN"];
-export const all_solution_tests = [ "CBC", "Cl", "Co", "EC", "HM", "HM-All", "ICP", "Li", "Mo", "NH4/NO3", "pH", "Urea"];
-export const all_media_tests = [ "Bulk Density", "Cl", "Co", "EC", "HM", "HM-All", "ICP", "Li", "Mo", "NH4/NO3", "pH", "Urea"];
+export const all_plant_tests = [
+    "Al",
+    "Biomass",
+    "C",
+    "Cl",
+    "Dry Weight",
+    "Mg",
+    "K",
+    "NO3",
+    "N",
+];
+    
+export const all_waste_tests = [
+    "C",
+    "Dry Matter",
+    "Lime", 
+    "Metals",
+    "NH4",
+    "NO3",
+    "pH",
+    "Salts",
+    "Urea",
+];
+
+export const all_solution_tests = [
+    "Carbonate",
+    "Chloride",
+    "Metals",
+    "Mg",
+    "NH4",
+    "NO3",
+    "pH",
+    "Salts",
+    "Urea"
+];
+
+export const all_media_tests = [
+    "Cl",
+    "Density",
+    "K",
+    "Iron",
+    "NH4",
+    "NO3",
+    "pH",
+    "Salts",
+    "Zinc",
+];
 
 
 /** Default tests assigned to every sample of a particular type. */
-export const default_plant_tests = ["ICP", "N"];
-export const default_waste_liquid_tests = ["ICP", "pH", "TKN"];
-export const default_waste_solid_tests = ["DM", "ICP", "N"];
-export const default_solution_tests = ["CBC", "EC", "ICP", "NH4/NO3", "pH"];
-export const default_media_tests = ["EC", "ICP", "pH"];
+export const default_plant_tests = ["Mg", "N"];
+export const default_waste_liquid_tests = ["pH", "Salts"];
+export const default_waste_solid_tests = ["Dry Matter", "Salts"];
+export const default_solution_tests = ["NH4", "NO3", "pH"];
+export const default_media_tests = ["Density", "pH"];
 
 
 /** An object mapping a sample to the extra, non-default tests it gets automatically assigned. */
 export const extra_tests = {
 
+    /*
     "Alfalfa": ["Mo"],
     "Broccoli": ["Mo"],
     "Brussels sprouts": ["Mo"],
@@ -354,7 +351,7 @@ export const extra_tests = {
     "NLA - Animal by-products (liquid)": ["pH", "EC"],
     "NSO - Non-composted solid, other": ["C", "pH", "EC"],
     "NLO - Non-composted liquid, other": ["pH", "EC"]
-
+    */
 
 };
 
