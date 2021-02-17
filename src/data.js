@@ -358,20 +358,41 @@ export const extra_tests = {
 
 
 /** Emptry arrays that will be used to store report data created by the user. */
-export const saved_reports = [];
-export const saved_report_ids = [];
+export let saved_reports = [];
+export let saved_report_ids = [];
 
-export const saved_plant_report_numbers = [];
-export const saved_waste_report_numbers = [];
-export const saved_solution_report_numbers = [];
-export const saved_media_report_numbers = [];
+export let saved_plant_report_numbers = [];
+export let saved_waste_report_numbers = [];
+export let saved_solution_report_numbers = [];
+export let saved_media_report_numbers = [];
 
-export const saved_plant_lab_ids = [];
-export const saved_waste_lab_ids = [];
-export const saved_solution_lab_ids = [];
-export const saved_media_lab_ids = [];
+export let saved_plant_lab_ids = [];
+export let saved_waste_lab_ids = [];
+export let saved_solution_lab_ids = [];
+export let saved_media_lab_ids = [];
+
+export const refreshArrays = () => {
+
+    while (saved_report_ids.length > 0) saved_report_ids.pop();
+    while (saved_plant_report_numbers.length > 0) saved_plant_report_numbers.pop();
+    while (saved_waste_report_numbers.length > 0) saved_waste_report_numbers.pop();
+    while (saved_solution_report_numbers.length > 0) saved_solution_report_numbers.pop();
+    while (saved_media_report_numbers.length > 0) saved_media_report_numbers.pop();
+    while (saved_plant_lab_ids.length > 0) saved_plant_lab_ids.pop();
+    while (saved_waste_lab_ids.length > 0) saved_waste_lab_ids.pop();
+    while (saved_solution_lab_ids.length > 0) saved_solution_lab_ids.pop();
+    while (saved_media_lab_ids.length > 0) saved_media_lab_ids.pop();
 
 
+}
+
+export const deleteReport = (number) => {
+    saved_reports = saved_reports.filter(report => {
+        return report.styledReportNumber !== number;
+    });
+
+    refreshArrays();
+}
 
 /** Something to export */
 const myConstant = 4242;

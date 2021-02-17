@@ -7,7 +7,7 @@ import {plant_codes, waste_codes, solution_codes, media_codes,
         extra_tests, saved_reports, saved_report_ids, saved_plant_report_numbers, saved_waste_report_numbers,
         saved_solution_report_numbers, saved_media_report_numbers, saved_plant_lab_ids, saved_waste_lab_ids,
         saved_solution_lab_ids, saved_media_lab_ids,
-        copyObject, getAllTests, isSolidWaste, getStyledReportNumber} from './data.js';
+        copyObject, getAllTests, isSolidWaste, getStyledReportNumber, deleteReport} from './data.js';
 
 
 /**
@@ -157,9 +157,18 @@ class App extends Component {
     /**
      * Removes a saved report from the report storage array.
      */
-    deleteSavedReport = (reportNumber) =>
+    deleteSavedReport = (number) =>
     {
-
+        deleteReport(number);
+        
+        if (saved_reports.length > 0)
+        {
+            this.displayReports();
+        }
+        else
+        {
+            this.displayCreate();
+        }
     }
 
     /**
@@ -573,6 +582,7 @@ class App extends Component {
                 <div className="container">
                     <button id="displayCreateScreen" onClick={() => this.displayCreate()}>Create New Report</button>
                     <Worklist
+                        deleteReport={this.deleteSavedReport}
                         records={saved_reports}
 
                     />

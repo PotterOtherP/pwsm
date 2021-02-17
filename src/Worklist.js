@@ -15,7 +15,7 @@ const Worklist = (props) => {
         <table className="worklist-table">
             <thead>
             </thead>
-        <ReportRows records={props.records}/>
+        <ReportRows deleteReport={props.deleteReport} records={props.records}/>
         </table>
         </div>
         );
@@ -71,12 +71,13 @@ const ReportRows = (props) => {
                 <td title="Expand/Collapse Report" style={{"cursor": "default"}}>☰</td>
                 <td>{row.styledReportNumber}</td>
                 <td>{"Samples: " + sampleRange}</td>
-                <td colspan="9"></td>
+                <td colSpan="8"></td>
                 <td>{row.reportType}</td>
+                <td><button onClick={() => props.deleteReport(row.styledReportNumber)}>Delete</button></td>
                 </tr>
 
                 <tr key={index + "trtests"} id={"worklist-sample-row" + row.styledReportNumber} className="worklist-test-row">
-                <td colspan="3"></td>
+                <td colSpan="3"></td>
                 <ReportRowTestSection tests={testArray} />
                 <td>Comment</td>
                 </tr>
@@ -132,5 +133,7 @@ const SampleRowTestSection = (props) => {
         
     });
 }
+
+
 
 export default Worklist;
